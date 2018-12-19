@@ -1,9 +1,10 @@
 package config
 
 import (
-	"gopkg.in/src-d/go-git.v4"
-
+	"fmt"
 	"os"
+
+	"gopkg.in/src-d/go-git.v4"
 )
 
 const (
@@ -17,6 +18,9 @@ func CloneSource() error {
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 		Progress:          os.Stdout,
 	})
+	if err == nil {
+		fmt.Printf("Successfully cloned into: %s\n", directory)
+	}
 	return err
 }
 
@@ -29,5 +33,14 @@ func PullSource() error {
 	if err != nil {
 		return err
 	}
-	return w.Pull(&git.PullOptions{RemoteName: "origin"})
+	err = w.Pull(&git.PullOptions{
+		RemoteName: "origin",
+		Progress:   os.Stdout,
+	})
+	if err != nil {
+		fmt.Printf(" %s\n", err.Error())
+	} else {
+		fmt.Printf("Successfully cloned into: %s\n", directory)
+	}
+	return err
 }
