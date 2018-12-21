@@ -1,37 +1,18 @@
 package pages
 
 import (
-	// "fmt"
 	"regexp"
 	"strings"
-
-	"github.com/fatih/color"
 )
 
 var (
 	rarg = regexp.MustCompile(`{{.[^}}]+}}`)
-
-	bold  = color.New(color.Bold)
-	blue  = color.New(color.FgBlue)
-	red   = color.New(color.FgRed)
-	cyan  = color.New(color.FgCyan)
-	white = color.New(color.FgWhite)
 )
 
 type Page struct {
 	Name string
 	Desc string
 	Tips []*Tip
-}
-
-type Tip struct {
-	Desc string
-	Cmd  *Command
-}
-
-type Command struct {
-	Command string
-	Args    []string
 }
 
 func ParsePage(s string) *Page {
@@ -49,6 +30,7 @@ func ParsePage(s string) *Page {
 			break
 		}
 	}
+
 	tips := make([]*Tip, 0)
 	for ln := c; ln < len(l); {
 		line := l[ln]
@@ -87,32 +69,7 @@ func (p *Page) String() string {
 	return s
 }
 
-func (t *Tip) String() string {
-	s := t.Desc
-	return s
-}
-
-func (c *Command) String() string {
-	s := c.Command
-	return s
-}
-
 func (p *Page) Display() string {
-	s := bold.Sprint(p.Name) + "\n\n" + p.Desc
+	s := bold.Sprint(p.Name) + "\n\n" + p.Desc + "\n"
 	return s
-}
-
-func (t *Tip) Display() string {
-	s := "- " + blue.Sprint(t.Desc) + "\n" + t.Cmd.Display()
-	return s
-}
-
-func (c *Command) Display() string {
-	s := c.Command
-	for _, arg := range c.Args {
-		t := arg[2:]
-		t = t[:len(t)-2]
-		s = strings.Replace(s, arg, white.Sprint(bold.Sprint(t)), 1)
-	}
-	return "    " + s + "\n"
 }

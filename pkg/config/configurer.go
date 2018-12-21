@@ -1,14 +1,17 @@
 package config
 
 import (
-	"fmt"
+	"os"
 	"runtime"
 
 	log "github.com/sirupsen/logrus"
 )
 
 func StartUp() error {
-	fmt.Printf("%s\n", initialMessage())
+	ok, _ := exists(SourceDir)
+	if !ok {
+		return Clear()
+	}
 	return nil
 }
 
@@ -27,4 +30,15 @@ func OSName() (n string) {
 		log.Warn("Operating system couldn't be recognized")
 	}
 	return n
+}
+
+func exists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return true, err
 }
