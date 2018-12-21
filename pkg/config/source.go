@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"gopkg.in/src-d/go-git.v4"
 )
@@ -70,4 +71,16 @@ func DataDir() (d string) {
 		fmt.Println("Operating system couldn't be recognized")
 	}
 	return d
+}
+
+func staled() bool {
+	file, _ := os.Open(SourceDir)
+	fstat, _ := file.Stat()
+	// now := time.Now()
+
+	diff := time.Now().Sub(fstat.ModTime())
+	if diff > 24*7*2*time.Hour {
+		return true
+	}
+	return false
 }
