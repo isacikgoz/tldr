@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	log "github.com/sirupsen/logrus"
 	"gopkg.in/src-d/go-git.v4"
 )
 
@@ -17,7 +16,10 @@ var (
 	SourceDir = dir
 )
 
-func CloneSource() error {
+func Clear() error {
+	os.RemoveAll(SourceDir)
+
+	fmt.Printf("%s\n", initialMessage())
 	_, err := git.PlainClone(dir, false, &git.CloneOptions{
 		URL:               giturl,
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
@@ -30,6 +32,8 @@ func CloneSource() error {
 }
 
 func PullSource() error {
+
+	fmt.Printf("%s\n", initialMessage())
 	r, err := git.PlainOpen(dir)
 	if err != nil {
 		return err
@@ -63,7 +67,7 @@ func DataDir() (d string) {
 	case "solaris":
 		d = os.Getenv("HOME") + "/.local/share"
 	default:
-		log.Warn("Operating system couldn't be recognized")
+		fmt.Println("Operating system couldn't be recognized")
 	}
 	return d
 }
