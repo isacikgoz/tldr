@@ -1,16 +1,31 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"runtime"
-
-	log "github.com/sirupsen/logrus"
 )
 
-func StartUp() error {
+// StartUp
+func StartUp(clear, update bool) error {
 	ok, _ := exists(SourceDir)
-	if !ok {
-		return Clear()
+	if !ok || staled() {
+		if err := Clear(); err != nil {
+			return err
+		}
+	}
+	if clear {
+		err := Clear()
+		if err != nil {
+
+		}
+		os.Exit(0)
+	} else if update {
+		err := PullSource()
+		if err != nil {
+
+		}
+		os.Exit(0)
 	}
 	return nil
 }
@@ -27,11 +42,13 @@ func OSName() (n string) {
 	case "solaris":
 		n = "sunos"
 	default:
-		log.Warn("Operating system couldn't be recognized")
+		fmt.Println("Operating system couldn't be recognized")
+		os.Exit(1)
 	}
 	return n
 }
 
+// exists checks if the file exists
 func exists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {

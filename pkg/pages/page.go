@@ -6,15 +6,19 @@ import (
 )
 
 var (
+	// used for matching to args in a command
 	rarg = regexp.MustCompile(`{{.[^}}]+}}`)
 )
 
+// Page is the representation of a tldr page itself
 type Page struct {
 	Name string
 	Desc string
 	Tips []*Tip
 }
 
+// Parse page from bare markdown string. Rather than parsing markdown itself
+// initial implementation approach is stripping from a single string
 func ParsePage(s string) *Page {
 	l := strings.Split(s, "\n")
 
@@ -69,7 +73,8 @@ func (p *Page) String() string {
 	return s
 }
 
+// Display returns colored and indented text for rendering output
 func (p *Page) Display() string {
-	s := bold.Sprint(p.Name) + "\n\n" + p.Desc + "\n"
+	s := bold.Sprint(p.Name) + "\n\n" + p.Desc
 	return s
 }

@@ -10,33 +10,20 @@ import (
 )
 
 var (
-	clear       = kingpin.Flag("clear-cache", "clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
-	update      = kingpin.Flag("update", "pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
-	interactive = kingpin.Flag("interactive", "interactive mode.").Short('i').Default("true").Bool()
+	clear  = kingpin.Flag("clear-cache", "clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
+	update = kingpin.Flag("update", "pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
+	static = kingpin.Flag("static", "static mode.").Short('s').Default("false").Bool()
 
-	page = kingpin.Arg("command", "Name of the command.").String()
+	page = kingpin.Arg("command", "Name of the command.").Strings()
 )
 
 func main() {
-	// start := time.Now()
-	kingpin.Version("tldr++ version 0.0.1 (pre-release)")
-	// parse the command line flag and options
+
+	kingpin.Version("tldr++ version 0.1 (pre-release)")
 	kingpin.Parse()
-	config.StartUp()
-	if *clear {
-		err := config.Clear()
-		if err != nil {
 
-		}
-		return
-	}
-	if *update {
-		err := config.PullSource()
-		if err != nil {
+	config.StartUp(*clear, *update)
 
-		}
-		return
-	}
 	if len(*page) == 0 {
 		kingpin.Usage()
 		return
@@ -48,23 +35,30 @@ func main() {
 	}
 
 	prompter := prompt.New(p)
-
-	if err = prompter.RenderPage(); err != nil {
-		fmt.Printf("%s\n", err.Error())
+	if err = prompter.RenderPage(*static); err != nil {
+		fmt.Printf("%s", err.Error())
+		return
 	}
 
 	t, err := prompter.Selection()
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
+		fmt.Printf("%s", err.Error())
+		return
+	}
+
+	if t == nil {
+		return
 	}
 
 	cmd, err := prompter.GenerateCommand(t)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
+		return
 	}
 
 	if err = prompter.Run(cmd); err != nil {
 		fmt.Printf("%s\n", err.Error())
+		return
 	}
 
 }
