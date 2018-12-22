@@ -73,7 +73,7 @@ func getFileExtension(arg string) string {
 		return ""
 	}
 	// since the args is surrounded with "}}"
-	r := []rune(arg[:len(arg)-2])
+	r := []rune(arg)
 	var ext string
 	for i := len(r) - 1; i >= 0; i-- {
 		ext = string(r[i]) + ext

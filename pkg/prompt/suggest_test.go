@@ -41,12 +41,13 @@ func TestSuggestCompleterFunct(t *testing.T) {
 		input    string
 		expected completer.FilePathCompleter
 	}{
-		{"{{archived.7z}}", completer.FilePathCompleter{}},
-		{"{{path/to/file}}", completer.FilePathCompleter{}},
+		{"archived.7z", completer.FilePathCompleter{}},
+		{"path/to/file", completer.FilePathCompleter{}},
+		// {"8", completer.FilePathCompleter{}},
 	}
 	for _, test := range tests {
-		if _, error := suggestCompleterFunc(test.input); error != nil {
-			t.Error("Failed")
+		if _, err := suggestCompleterFunc(test.input); err != nil {
+			t.Errorf("Failed, err: %s", err.Error())
 		}
 	}
 }
@@ -56,11 +57,13 @@ func TestGetFileExtension(t *testing.T) {
 		input    string
 		expected string
 	}{
-		{"{{archived.7z}}", ".7z"},
-		{"{{path/to/file}}", ""},
-		{"{{file.tar.gz}}", ".gz"},
-		{"{{main.d}}", ".d"},
-		{"{{...}}", ""},
+		{"archived.7z", ".7z"},
+		{"path/to/file", ""},
+		{"file.tar.gz", ".gz"},
+		{"main.d", ".d"},
+		{"compressed.zip", ".zip"},
+		{"...", ""},
+		{"7", ""},
 	}
 	for _, test := range tests {
 		if output := getFileExtension(test.input); output != test.expected {
