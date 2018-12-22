@@ -16,7 +16,7 @@ func TestRead(t *testing.T) {
 		{[]string{"git"}, &Page{Name: "git"}},
 	}
 	for _, test := range tests {
-		if p, err := Read(test.input); p.Name != test.expected.Name && err != nil {
+		if p, err := Read(test.input); p != nil && p.Name != test.expected.Name && err != nil {
 			t.Errorf("Test Failed: {%s} inputted, {%s} expected, recieved: {%s}", strings.Join(test.input, ""), test.expected.Name, p.Name)
 		}
 	}
