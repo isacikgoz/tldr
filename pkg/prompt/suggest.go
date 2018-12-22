@@ -69,7 +69,7 @@ func suggestCompleterFunc(arg string) (completer.FilePathCompleter, error) {
 // returns the file extension of the argument
 func getFileExtension(arg string) string {
 	// probably not a file. hence, wont have an extension
-	if strings.Contains(arg, "..") {
+	if strings.Contains(arg, "..") || len(arg) < 2 {
 		return ""
 	}
 	// since the args is surrounded with "}}"
