@@ -19,7 +19,7 @@ var (
 
 func main() {
 
-	kingpin.Version("tldr++ version 0.1 (pre-release)")
+	kingpin.Version("tldr++ version 0.1.1 (pre-release)")
 	kingpin.Parse()
 
 	config.StartUp(*clear, *update)

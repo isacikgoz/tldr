@@ -1,20 +1,31 @@
 [![Build Status](https://travis-ci.com/isacikgoz/tldr.svg?branch=master)](https://travis-ci.com/isacikgoz/tldr) [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE) 
 
 # tldr++
-community driven man pages improved with smart user interaction. tldr++ seperates itself with convenient user guidance and accelerates command generating.
+community driven man pages improved with smart user interaction. tldr++ seperates itself from other tldr client with convenient user guidance and accelerates command generating.
 
-![screenplay](img/screenplay.gif)
+![screenshot](img/screenshot.png)
 
 ## Features
 - Interactive (see the screencast)
 - Smart file suggestions (further suggestions will be added)
 - Simple implementation
-- One of the fastest clients can be benchmarked with static option
+- One of the fastest clients (can be benchmarked with static option)
 - Multi-Platform
-- *Pure-go (even git itself)*
+- Pure-go (*even built-in git itself*)
+
+## ScreenPlay
+
+![screenplay](img/screenplay.gif)
 
 ## Installation
-Refer to [Release Page](https://github.com/isacikgoz/tldr/releases)
+
+Refer to [Release Page](https://github.com/isacikgoz/tldr/releases) for binaries
+
+to build from source:
+
+```bash
+go get -u github.com/isacikgoz/tldr
+```
 
 ## Credits
 - [tldr-pages](https://github.com/tldr-pages/tldr)

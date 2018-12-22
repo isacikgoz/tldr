@@ -61,7 +61,6 @@ func suggestCompleterFunc(arg string) (completer.FilePathCompleter, error) {
 			}
 			return filePathCompleter, nil
 		} else {
-
 			return completer.FilePathCompleter{}, errors.New("Can't suggest file")
 		}
 	}
@@ -73,6 +72,7 @@ func getFileExtension(arg string) string {
 	if strings.Contains(arg, "..") {
 		return ""
 	}
+	// since the args is surrounded with "}}"
 	r := []rune(arg[:len(arg)-2])
 	var ext string
 	for i := len(r) - 1; i >= 0; i-- {
