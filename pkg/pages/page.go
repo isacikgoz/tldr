@@ -7,7 +7,7 @@ import (
 
 var (
 	// used for matching to args in a command
-	rarg = regexp.MustCompile(`{{.[^}}]+}}`)
+	rarg = regexp.MustCompile(`{{.[^}}]+}}|{{[\d]+}}`)
 )
 
 // Page is the representation of a tldr page itself
