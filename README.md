@@ -11,9 +11,9 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 - Simple implementation
 - One of the fastest clients (can be benchmarked with static option)
 - Supports all mainstream platforms (Linux, MacOS, Windows)
-- Pure-go (*even built-in git itself*)
+- Pure-go (*even contains built-in git*)
 
-## ScreenPlay
+## Screencast
 
 ![screenplay](img/screenplay.gif)
 

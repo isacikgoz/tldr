@@ -17,6 +17,7 @@ var (
 	SourceDir = dir
 )
 
+// Clear removes the existing tldr directory. TODO: maybe require user to confirm
 func Clear() error {
 	os.RemoveAll(SourceDir)
 
@@ -32,6 +33,7 @@ func Clear() error {
 	return err
 }
 
+// Pulls the github.com/tldr-pages/tldr repository
 func PullSource() error {
 
 	fmt.Printf("%s\n", initialMessage())
@@ -73,14 +75,21 @@ func DataDir() (d string) {
 	return d
 }
 
-func staled() bool {
-	file, _ := os.Open(SourceDir)
-	fstat, _ := file.Stat()
-	// now := time.Now()
+//
+func staled() (bool, error) {
+	file, err := os.Open(SourceDir)
+	if err != nil {
+		return false, err
+	}
+	fstat, err := file.Stat()
+	if err != nil {
+		return false, err
+	}
 
 	diff := time.Now().Sub(fstat.ModTime())
+	// Two weak update time, seems fair.
 	if diff > 24*7*2*time.Hour {
-		return true
+		return true, nil
 	}
-	return false
+	return false, nil
 }
