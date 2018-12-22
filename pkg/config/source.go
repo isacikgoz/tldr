@@ -15,11 +15,12 @@ const (
 var (
 	dir       = DataDir() + "/tldr"
 	SourceDir = dir
+	old       = ".old"
 )
 
 // Clear removes the existing tldr directory. TODO: maybe require user to confirm
 func Clear() error {
-	os.RemoveAll(SourceDir)
+	os.Rename(SourceDir, SourceDir+old)
 
 	fmt.Printf("%s\n", initialMessage())
 	_, err := git.PlainClone(dir, false, &git.CloneOptions{
@@ -29,6 +30,11 @@ func Clear() error {
 	})
 	if err == nil {
 		fmt.Printf("Successfully cloned into: %s\n", dir)
+		os.RemoveAll(SourceDir + old)
+	}
+	if err != nil {
+		os.RemoveAll(SourceDir)
+		os.Rename(SourceDir+old, SourceDir)
 	}
 	return err
 }
@@ -75,7 +81,7 @@ func DataDir() (d string) {
 	return d
 }
 
-//
+// staled checks if the source folder is older than two weeks
 func staled() (bool, error) {
 	file, err := os.Open(SourceDir)
 	if err != nil {
@@ -87,7 +93,7 @@ func staled() (bool, error) {
 	}
 
 	diff := time.Now().Sub(fstat.ModTime())
-	// Two weak update time, seems fair.
+	// Two week update time, seems fair.
 	if diff > 24*7*2*time.Hour {
 		return true, nil
 	}
