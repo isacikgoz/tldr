@@ -1,13 +1,7 @@
 package pages
 
 import (
-	"regexp"
 	"strings"
-)
-
-var (
-	// used for matching to args in a command
-	rarg = regexp.MustCompile(`{{.[^}}]+}}|{{[\d]+}}`)
 )
 
 // Page is the representation of a tldr page itself
@@ -46,7 +40,7 @@ func ParsePage(s string) *Page {
 			if len(c) > 0 && c[0] == '`' {
 				cmd = &Command{
 					Command: c[:len(c)-1][1:],
-					Args:    rarg.FindAllString(c, -1),
+					Args:    stripCommandArgs(c),
 				}
 				ln = ln + 2
 			} else {

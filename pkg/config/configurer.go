@@ -9,7 +9,9 @@ import (
 // StartUp
 func StartUp(clear, update bool) error {
 	ok, _ := exists(SourceDir)
-	if !ok || staled() {
+	// is staled, first check for internet connectivity, we don't want to
+	// existing source if so
+	if st, _ := staled(); st || !ok {
 		if err := Clear(); err != nil {
 			return err
 		}

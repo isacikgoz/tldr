@@ -109,7 +109,7 @@ func (p *Prompt) GenerateCommand(t *pages.Tip) (string, error) {
 		// cs, _ := suggestCompleterFunc(arg)
 		ext = getFileExtension(arg)
 		answers = append(answers, prompt.Input(
-			"$"+" "+arg[:len(arg)-2][2:]+" -> ",
+			"$"+" "+arg+" -> ",
 			fileExtCompleterFunc,
 			prompt.OptionPreviewSuggestionTextColor(prompt.Cyan),
 			prompt.OptionInputTextColor(prompt.Cyan),
@@ -131,7 +131,8 @@ func (p *Prompt) GenerateCommand(t *pages.Tip) (string, error) {
 
 	fs := t.Cmd.String()
 	for i, arg := range t.Cmd.Args {
-		fs = strings.Replace(fs, arg, answers[i], 1)
+		// since we have double curlybraces on args
+		fs = strings.Replace(fs, "{{"+arg+"}}", answers[i], 1)
 	}
 	return fs, nil
 }
