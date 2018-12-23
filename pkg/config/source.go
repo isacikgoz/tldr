@@ -22,7 +22,7 @@ var (
 func Clear() error {
 	os.Rename(SourceDir, SourceDir+old)
 
-	fmt.Printf("%s\n", initialMessage())
+	PrintLogo()
 	_, err := git.PlainClone(dir, false, &git.CloneOptions{
 		URL:               giturl,
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
@@ -42,7 +42,6 @@ func Clear() error {
 // Pulls the github.com/tldr-pages/tldr repository
 func PullSource() error {
 
-	fmt.Printf("%s\n", initialMessage())
 	r, err := git.PlainOpen(dir)
 	if err != nil {
 		return err
@@ -56,9 +55,9 @@ func PullSource() error {
 		Progress:   os.Stdout,
 	})
 	if err != nil {
-		fmt.Printf(" %s\n", err.Error())
+		fmt.Printf("%s\n", err.Error())
 	} else {
-		fmt.Printf("Successfully cloned into: %s\n", dir)
+		fmt.Printf("Successfully pulled into: %s\n", dir)
 	}
 	return err
 }

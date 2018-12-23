@@ -50,7 +50,7 @@ func (p *Prompt) RenderPage(static bool) error {
 		},
 	}
 	if static {
-		fmt.Println("\n" + p.Page.Display())
+		fmt.Println(p.Page.Display())
 		for _, t := range p.Page.Tips {
 			fmt.Println("-" + t.Display())
 		}
