@@ -12,20 +12,21 @@ import (
 var (
 	clear  = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
 	update = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
-	static = kingpin.Flag("static", "Static mode, application behaves like an conventional tldr client.").Short('s').Default("false").Bool()
+	static = kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
 	random = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
 
-	page = kingpin.Arg("command", "Name of the command.").Strings()
+	page = kingpin.Arg("command", "Name of the command. (e.g. tldr grep)").Strings()
 )
 
 func main() {
 
-	kingpin.Version("tldr++ version 0.1.1 (pre-release)")
+	kingpin.Version("tldr++ version 0.2.1 (alpha)")
 	kingpin.Parse()
 
 	config.StartUp(*clear, *update)
 
 	if len(*page) == 0 && !*random {
+		config.PrintLogo()
 		kingpin.Usage()
 		return
 	}
@@ -37,7 +38,7 @@ func main() {
 		p, err = pages.Read(*page)
 	}
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
+		fmt.Printf("%s", err.Error())
 		return
 	}
 
@@ -59,13 +60,12 @@ func main() {
 
 	cmd, err := prompter.GenerateCommand(t)
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
+		fmt.Printf("%s", err.Error())
 		return
 	}
 
 	if err = prompter.Run(cmd); err != nil {
-		fmt.Printf("%s\n", err.Error())
+		fmt.Printf("%s", err.Error())
 		return
 	}
-
 }

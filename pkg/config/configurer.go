@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+
+	"github.com/fatih/color"
 )
 
 // StartUp
@@ -11,12 +13,11 @@ func StartUp(clear, update bool) error {
 	ok, _ := exists(SourceDir)
 	// is staled, first check for internet connectivity, we don't want to
 	// existing source if so
-	if st, _ := staled(); st || !ok {
-		if err := Clear(); err != nil {
-			return err
-		}
+	if st, _ := staled(); st {
+		yellow := color.New(color.FgYellow)
+		fmt.Println(yellow.Sprint("TLDR repository is older than 2 weeks, consider updating it with -u option."))
 	}
-	if clear {
+	if clear || !ok {
 		err := Clear()
 		if err != nil {
 
@@ -48,6 +49,10 @@ func OSName() (n string) {
 		os.Exit(1)
 	}
 	return n
+}
+
+func PrintLogo() {
+	fmt.Printf("%s\n", colorLogo())
 }
 
 // exists checks if the file exists
