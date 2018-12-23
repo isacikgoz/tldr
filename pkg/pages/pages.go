@@ -3,7 +3,10 @@ package pages
 import (
 	"errors"
 	"io/ioutil"
+	"math/rand"
 	"os"
+	"strings"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/isacikgoz/tldr/pkg/config"
@@ -65,4 +68,25 @@ func queryOS(page string) (p *Page, err error) {
 	}
 	p = ParsePage(string(b))
 	return p, nil
+}
+
+func QueryRandom() (p *Page, err error) {
+	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
+	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
+	paths := []string{d_cmn, d_os}
+	srcs := make([]string, 0)
+	for _, p := range paths {
+		files, err := ioutil.ReadDir(p)
+		if err != nil {
+			break
+		}
+		for _, f := range files {
+			if strings.HasSuffix(f.Name(), ".md") {
+				srcs = append(srcs, f.Name()[:len(f.Name())-3])
+			}
+		}
+	}
+	rand.Seed(time.Now().UTC().UnixNano())
+	page := srcs[rand.Intn(len(srcs))]
+	return Read([]string{page})
 }
