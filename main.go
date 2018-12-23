@@ -10,9 +10,10 @@ import (
 )
 
 var (
-	clear  = kingpin.Flag("clear-cache", "clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
-	update = kingpin.Flag("update", "pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
-	static = kingpin.Flag("static", "static mode.").Short('s').Default("false").Bool()
+	clear  = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
+	update = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
+	static = kingpin.Flag("static", "Static mode, application behaves like an conventional tldr client.").Short('s').Default("false").Bool()
+	random = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
 
 	page = kingpin.Arg("command", "Name of the command.").Strings()
 )
@@ -24,11 +25,17 @@ func main() {
 
 	config.StartUp(*clear, *update)
 
-	if len(*page) == 0 {
+	if len(*page) == 0 && !*random {
 		kingpin.Usage()
 		return
 	}
-	p, err := pages.Read(*page)
+	var p *pages.Page
+	var err error
+	if *random {
+		p, err = pages.QueryRandom()
+	} else {
+		p, err = pages.Read(*page)
+	}
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
 		return
