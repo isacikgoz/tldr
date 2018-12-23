@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/isacikgoz/tldr.svg?branch=master)](https://travis-ci.com/isacikgoz/tldr) [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE) 
+[![Build Status](https://travis-ci.com/isacikgoz/tldr.svg?branch=master)](https://travis-ci.com/isacikgoz/tldr) [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 # tldr++
 Community driven man pages improved with smart user interaction. **tldr++** seperates itself from any other tldr client with convenient user guidance feature.
