@@ -9,7 +9,7 @@ import (
 
 	prompt "github.com/c-bata/go-prompt"
 	"github.com/c-bata/go-prompt/completer"
-	"github.com/isacikgoz/survey.v1"
+	"github.com/isacikgoz/survey"
 	"github.com/isacikgoz/tldr/pkg/pages"
 	"gopkg.in/AlecAivazis/survey.v1/core"
 	"gopkg.in/AlecAivazis/survey.v1/terminal"
