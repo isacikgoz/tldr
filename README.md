@@ -9,7 +9,7 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 - Interactive (see the screencast)
 - Smart file suggestions (further suggestions will be added)
 - Simple implementation
-- One of the fastest clients (can be benchmarked with static option)
+- One of the fastest clients (see [Benchmarks](https://github.com/isacikgoz/tldr/wiki/Benchmarks))
 - Supports all mainstream platforms (Linux, MacOS, Windows)
 - Pure-go (*even contains built-in git*)
 
