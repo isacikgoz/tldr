@@ -9,8 +9,8 @@ import (
 
 	prompt "github.com/c-bata/go-prompt"
 	"github.com/c-bata/go-prompt/completer"
+	"github.com/isacikgoz/survey.v1"
 	"github.com/isacikgoz/tldr/pkg/pages"
-	"gopkg.in/AlecAivazis/survey.v1"
 	"gopkg.in/AlecAivazis/survey.v1/core"
 	"gopkg.in/AlecAivazis/survey.v1/terminal"
 )
@@ -145,6 +145,9 @@ func (p *Prompt) Run(command string) error {
 		Default: true,
 	}
 	survey.AskOne(confirm, &run, nil)
+	if confirm.AddSudo {
+		command = "sudo " + command
+	}
 
 	if run {
 		args := strings.Fields(command)
