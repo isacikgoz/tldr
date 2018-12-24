@@ -3,19 +3,15 @@
 # tldr++
 Community driven man pages improved with smart user interaction. **tldr++** seperates itself from any other tldr client with convenient user guidance feature.
 
-![screenshot](img/screenshot.png)
+![screenplay](img/screenplay.gif)
 
 ## Features
-- Interactive (see the screencast)
+- Interactive
 - Smart file suggestions (further suggestions will be added)
 - Simple implementation
 - One of the fastest clients (see [Benchmarks](https://github.com/isacikgoz/tldr/wiki/Benchmarks))
-- Supports all mainstream platforms (Linux, MacOS, Windows)
+- Supports all mainstream platforms and easy install (Linux, MacOS, Windows)
 - Pure-go (*even contains built-in git*)
-
-## Screencast
-
-![screenplay](img/screenplay.gif)
 
 ## Installation
 
