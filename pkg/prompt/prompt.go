@@ -42,9 +42,11 @@ func (p *Prompt) RenderPage(static bool) error {
 		{
 			Name: "Tip",
 			Prompt: &survey.Select{
-				Message: p.Page.Display() + "\n",
-				Options: options,
-				VimMode: true,
+				Message:  p.Page.Display() + "\n",
+				Options:  options,
+				VimMode:  true,
+				PageSize: len(p.Page.Tips),
+				Help:     "Select a command template to fill args.",
 			},
 			Validate: survey.Required,
 		},
@@ -63,7 +65,8 @@ func (p *Prompt) RenderPage(static bool) error {
   {{- "   "}}(Use{{" "}}{{- color "cyan"}}arrows{{- color "reset"}}` +
 		` to move,{{" "}}{{- color "cyan"}}type{{- color "reset"}} to filter or{{" "}}` +
 		`{{- color "red"}}ctrl+c{{- color "reset"}} to return{{- if and .Help (not .ShowHelp)}}` +
-		`, {{ HelpInputRune }} for more help{{end}})
+		`. {{""}}{{- color "green"}}{{ HelpInputRune }}{{- color "reset"}} for more{{end}})
+		{{- if .ShowHelp }}{{"\n"}}{{- color "green"}}{{ HelpIcon }}{{"  "}}{{ .Help }}{{color "reset"}}{{end}}
   {{- "\n\n"}}
   {{- range $ix, $choice := .PageEntries}}
     {{- if eq $ix $.SelectedIndex}}{{color "blue+b"}}{{ "-" }} {{else}}{{color "default"}}  {{end}}
@@ -71,6 +74,7 @@ func (p *Prompt) RenderPage(static bool) error {
     {{- color "reset"}}{{"\n"}}
   {{- end}}
 {{- end}}`
+
 	terminal.InterruptErr = errors.New("\x0d")
 	return nil
 }

@@ -7,7 +7,7 @@ import (
 func colorLogo() string {
 
 	cyan := color.New(color.FgCyan)
-	blue := color.New(color.FgBlue)
+	blue := color.New(color.FgHiBlue)
 	logo := cyan.Sprint(`
    __  __    __               
   / /_/ /___/ /____  __    __ 

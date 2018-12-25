@@ -18,7 +18,7 @@ var (
 	ext = ".md"
 
 	bold  = color.New(color.Bold)
-	blue  = color.New(color.FgBlue)
+	blue  = color.New(color.FgHiBlue)
 	red   = color.New(color.FgRed)
 	cyan  = color.New(color.FgCyan)
 	white = color.New(color.FgWhite)
