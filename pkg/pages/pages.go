@@ -90,3 +90,27 @@ func QueryRandom() (p *Page, err error) {
 	page := srcs[rand.Intn(len(srcs))]
 	return Read([]string{page})
 }
+
+func ReadAll() (p *Page, err error) {
+	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
+	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
+	paths := []string{d_cmn, d_os}
+	p = &Page{Name: "Search All"}
+	p.Tips = make([]*Tip, 0)
+	for _, pt := range paths {
+		files, err := ioutil.ReadDir(pt)
+		if err != nil {
+			break
+		}
+		for _, f := range files {
+			if strings.HasSuffix(f.Name(), ".md") {
+				page, err := Read([]string{f.Name()[:len(f.Name())-3]})
+				if err != nil {
+					continue
+				}
+				p.Tips = append(p.Tips, page.Tips...)
+			}
+		}
+	}
+	return p, nil
+}
