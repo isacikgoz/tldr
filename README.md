@@ -29,3 +29,4 @@ go get -u github.com/isacikgoz/tldr
 - [go-prompt](https://github.com/c-bata/go-prompt)
 - [go-git](https://github.com/src-d/go-git)
 - [kingpin](https://github.com/alecthomas/kingpin)
+- [color](https://github.com/fatih/color)
