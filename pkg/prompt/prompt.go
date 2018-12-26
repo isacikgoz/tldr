@@ -147,7 +147,18 @@ func (p *Prompt) Run(command string) error {
 	confirm := &survey.Confirm{
 		Message: command,
 		Default: true,
+		Help:    "type y! to run command with",
 	}
+	survey.ConfirmQuestionTemplate = `
+{{- if .ShowHelp }}{{- color "cyan"}}{{ HelpIcon }} {{ .Help }} {{color "red"}}sudo{{color "reset"}}{{"\n"}}{{end}}
+{{- color "green+hb"}}{{ QuestionIcon }} {{color "reset"}}
+{{- if .ShowSudo }}{{- color "yellow"}}sudo{{color "reset"}} {{end}}
+{{- color "default+hb"}}{{ .Message }} {{color "reset"}}
+{{- if .Answer}}
+  {{- color "cyan"}}{{.Answer}}{{color "reset"}}{{- if .ShowSudo }}{{- color "yellow"}}!{{color "reset"}}{{end}}{{"\n"}}
+{{- else }}
+  {{- color "white"}}{{if .Default}}(Y/n) {{else}}(y/N) {{end}}{{color "reset"}}
+{{- end}}`
 	survey.AskOne(confirm, &run, nil)
 	if confirm.AddSudo {
 		command = "sudo " + command
