@@ -30,22 +30,27 @@ func New(p *pages.Page) *Prompt {
 
 // RenderPage prints the tldr man page as is
 func (p *Prompt) RenderPage(static bool) error {
-
 	options := make([]string, 0)
 
 	for _, t := range p.Page.Tips {
 		options = append(options, t.Display())
 	}
 	core.ErrorTemplate = ""
+	var mxRows int
+	if len(p.Page.Tips) > 9 {
+		mxRows = 9
+	} else {
+		mxRows = len(p.Page.Tips)
+	}
 	// genereate questions to ask
 	p.Questions = []*survey.Question{
 		{
 			Name: "Tip",
 			Prompt: &survey.Select{
-				Message:  p.Page.Display() + "\n",
+				Message:  "\n" + p.Page.Display() + "\n",
 				Options:  options,
 				VimMode:  true,
-				PageSize: len(p.Page.Tips),
+				PageSize: mxRows,
 				Help:     "Select a command template to fill args.",
 			},
 			Validate: survey.Required,
@@ -107,7 +112,6 @@ func (p *Prompt) Selection() (t *pages.Tip, err error) {
 
 // GenerateCommand generates command form *pages.Tip
 func (p *Prompt) GenerateCommand(t *pages.Tip) (string, error) {
-
 	answers := make([]string, 0)
 	for _, arg := range t.Cmd.Args {
 		// cs, _ := suggestCompleterFunc(arg)
