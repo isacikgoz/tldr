@@ -25,15 +25,12 @@ func main() {
 
 	config.StartUp(*clear, *update)
 
-	if len(*page) == 0 && !*random {
-		config.PrintLogo()
-		kingpin.Usage()
-		return
-	}
 	var p *pages.Page
 	var err error
 	if *random {
 		p, err = pages.QueryRandom()
+	} else if len(*page) == 0 && !*static {
+		p, err = pages.ReadAll()
 	} else {
 		p, err = pages.Read(*page)
 	}
