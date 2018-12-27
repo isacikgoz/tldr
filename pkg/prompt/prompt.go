@@ -30,6 +30,13 @@ func New(p *pages.Page) *Prompt {
 
 // RenderPage prints the tldr man page as is
 func (p *Prompt) RenderPage(static bool) error {
+	if static {
+		fmt.Println(p.Page.Display())
+		for _, t := range p.Page.Tips {
+			fmt.Println("-" + t.Display())
+		}
+		return errors.New("")
+	}
 	options := make([]string, 0)
 
 	for _, t := range p.Page.Tips {
@@ -37,8 +44,8 @@ func (p *Prompt) RenderPage(static bool) error {
 	}
 	core.ErrorTemplate = ""
 	var mxRows int
-	if len(p.Page.Tips) > 9 {
-		mxRows = 9
+	if len(p.Page.Tips) > 7 {
+		mxRows = 7
 	} else {
 		mxRows = len(p.Page.Tips)
 	}
@@ -47,7 +54,7 @@ func (p *Prompt) RenderPage(static bool) error {
 		{
 			Name: "Tip",
 			Prompt: &survey.Select{
-				Message:  "\n" + p.Page.Display() + "\n",
+				Message:  p.Page.Display(),
 				Options:  options,
 				VimMode:  true,
 				PageSize: mxRows,
@@ -56,25 +63,18 @@ func (p *Prompt) RenderPage(static bool) error {
 			Validate: survey.Required,
 		},
 	}
-	if static {
-		fmt.Println(p.Page.Display())
-		for _, t := range p.Page.Tips {
-			fmt.Println("-" + t.Display())
-		}
-		return errors.New("")
-	}
 	survey.SelectQuestionTemplate = `
 {{- color "default+hb"}}{{ .Message }}{{ .FilterMessage }}{{color "reset"}}
 {{- if .ShowAnswer}}{{color "cyan"}} {{.Answer}}{{color "reset"}}{{"\n"}}
 {{- else}}
   {{- "   "}}(Use{{" "}}{{- color "cyan"}}arrows{{- color "reset"}}` +
-		` to move,{{" "}}{{- color "cyan"}}type{{- color "reset"}} to filter or{{" "}}` +
+		` to move,{{" "}}{{- color "cyan"}}type{{- color "reset"}} to search or{{" "}}` +
 		`{{- color "red"}}ctrl+c{{- color "reset"}} to return{{- if and .Help (not .ShowHelp)}}` +
 		`. {{""}}{{- color "green"}}{{ HelpInputRune }}{{- color "reset"}} for more{{end}})
 		{{- if .ShowHelp }}{{"\n"}}{{- color "green"}}{{ HelpIcon }}{{"  "}}{{ .Help }}{{color "reset"}}{{end}}
   {{- "\n\n"}}
   {{- range $ix, $choice := .PageEntries}}
-    {{- if eq $ix $.SelectedIndex}}{{color "blue+b"}}{{ "-" }} {{else}}{{color "default"}}  {{end}}
+    {{- if eq $ix $.SelectedIndex}}{{color "blue+b"}}{{ "*" }} {{else}}{{color "default"}}  {{end}}
     {{- $choice}}
     {{- color "reset"}}{{"\n"}}
   {{- end}}

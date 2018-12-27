@@ -69,6 +69,9 @@ func (p *Page) String() string {
 
 // Display returns colored and indented text for rendering output
 func (p *Page) Display() string {
-	s := bold.Sprint(p.Name) + "\n\n" + p.Desc
+	s := "\n" + bold.Sprint(p.Name) + "\n" + "\n"
+	if len(p.Desc) > 0 {
+		s = s + p.Desc + "\n"
+	}
 	return s
 }

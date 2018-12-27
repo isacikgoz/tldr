@@ -6,11 +6,12 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 ![screenplay](img/screenplay.gif)
 
 ## Features
-- Interactive
+- Fully Interactive (fill the command arguments easily)
+- Search from commands to find your desired command (exact + fuzzy search)
 - Smart file suggestions (further suggestions will be added)
 - Simple implementation
 - One of the fastest clients, even fastest (see [Benchmarks](https://github.com/isacikgoz/tldr/wiki/Benchmarks))
-- Supports all mainstream platforms and easy to install (Linux, MacOS, Windows)
+- Easy to install. Supports all mainstream OS and platforms (Linux, MacOS, Windows)(arm, x86)
 - Pure-go (*even contains built-in git*)
 
 ## Installation
@@ -27,6 +28,7 @@ go get -u github.com/isacikgoz/tldr
 - [tldr-pages](https://github.com/tldr-pages/tldr)
 - [survey](https://github.com/AlecAivazis/survey)
 - [go-prompt](https://github.com/c-bata/go-prompt)
+- [fuzzy](https://github.com/sahilm/fuzzy)
 - [go-git](https://github.com/src-d/go-git)
 - [kingpin](https://github.com/alecthomas/kingpin)
 - [color](https://github.com/fatih/color)

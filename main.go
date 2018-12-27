@@ -20,7 +20,7 @@ var (
 
 func main() {
 
-	kingpin.Version("tldr++ version 0.3.1")
+	kingpin.Version("tldr++ version 0.4.0")
 	kingpin.Parse()
 
 	config.StartUp(*clear, *update)
@@ -31,6 +31,10 @@ func main() {
 		p, err = pages.QueryRandom()
 	} else if len(*page) == 0 && !*static {
 		p, err = pages.ReadAll()
+	} else if len(*page) == 0 && *static {
+		config.PrintLogo()
+		kingpin.Usage()
+		return
 	} else {
 		p, err = pages.Read(*page)
 	}
