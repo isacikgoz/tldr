@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="This feature lets you add sudo to the begining of the command. To invoke it, simply put an exclamation mark (!) after typing y, Y or yes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Add sudo">
+<meta property="og:url" content="http://isacikgoz.me/tldr/posts/sudo/index.html">
+<meta property="og:site_name" content="tldr++">
+<meta property="og:description" content="This feature lets you add sudo to the begining of the command. To invoke it, simply put an exclamation mark (!) after typing y, Y or yes.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-27T17:18:24.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Add sudo">
+<meta name="twitter:description" content="This feature lets you add sudo to the begining of the command. To invoke it, simply put an exclamation mark (!) after typing y, Y or yes.">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/tldr/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/tldr/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/tldr/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Add sudo</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/tldr/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/tldr/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/tldr/">Home</a></li>
+         
+          <li><a href="/tldr/archives/">Use Cases</a></li>
+         
+          <li><a href="/tldr/installation/">installation</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/tldr/posts/static/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/tldr/posts/search/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://isacikgoz.me/tldr/posts/sudo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://isacikgoz.me/tldr/posts/sudo/&text=Add sudo"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://isacikgoz.me/tldr/posts/sudo/&is_video=false&description=Add sudo"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Add sudo&body=Check out this article: http://isacikgoz.me/tldr/posts/sudo/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://isacikgoz.me/tldr/posts/sudo/&name=Add sudo&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header id="header">
+  <a href="/tldr/">
+  
+    
+      <div id="logo" style="background-image: url(/tldr/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1>interactive tldr client</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/tldr/">Home</a></li>
+       
+        <li><a href="/tldr/archives/">Use Cases</a></li>
+       
+        <li><a href="/tldr/installation/">installation</a></li>
+      
+    </ul>
+  </div>
+</header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>This feature lets you add sudo to the begining of the command. To invoke it, simply put an exclamation mark (!) after typing y, Y or yes.</p>
+<script type="text/javascript" src="https://asciinema.org/a/G4vOEYTcuJ0C6K69NqCr0hByz.js" id="asciicast-G4vOEYTcuJ0C6K69NqCr0hByz" async></script>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/tldr/">Home</a></li>
+         
+          <li><a href="/tldr/archives/">Use Cases</a></li>
+         
+          <li><a href="/tldr/installation/">installation</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://isacikgoz.me/tldr/posts/sudo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://isacikgoz.me/tldr/posts/sudo/&text=Add sudo"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://isacikgoz.me/tldr/posts/sudo/&is_video=false&description=Add sudo"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Add sudo&body=Check out this article: http://isacikgoz.me/tldr/posts/sudo/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://isacikgoz.me/tldr/posts/sudo/&title=Add sudo"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://isacikgoz.me/tldr/posts/sudo/&name=Add sudo&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 İbrahim Serdar Açıkgöz
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/tldr/">Home</a></li>
+         
+          <li><a href="/tldr/archives/">Use Cases</a></li>
+         
+          <li><a href="/tldr/installation/">installation</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+<a href="hhttps://github.com/isacikgoz/tldr" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/tldr/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/tldr/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/tldr/lib/jquery/jquery.min.js"></script>
+<script src="/tldr/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/tldr/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

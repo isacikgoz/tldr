@@ -587,11 +587,11 @@ body {
   display: inline-block;
   float: left;
   margin-right: 20px;
-  width: 0px;
-  height: 0px;
+  width: 140px;
+  height: 52px;
   border-radius: 5px;
   filter: grayscale(100%);
-  background-size: 0px 0px;
+  background-size: 140px 52px;
   background-repeat: no-repeat;
   -webkit-filter: grayscale(100%);
 }
@@ -642,7 +642,7 @@ body {
   #header #title {
     display: table;
     margin-right: 5rem;
-    min-height: 0px;
+    min-height: 52px;
   }
   #header #title h1 {
     display: table-cell;
@@ -666,7 +666,7 @@ body {
   }
   #header #nav li:not(:first-child) {
     padding-top: 1rem;
-    padding-left: 20px;
+    padding-left: 160px;
     font-size: 1rem;
   }
 }
@@ -1044,6 +1044,29 @@ body {
 }
 .project-list .project-item p {
   display: inline;
+}
+.content img,
+.content video {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+.content .video-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  height: 0;
+}
+.content .video-container iframe,
+.content .video-container object,
+.content .video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+  width: 100%;
+  height: 100%;
 }
 article header .posttitle {
   margin-top: 0;

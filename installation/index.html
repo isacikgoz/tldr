@@ -6,16 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Community driven man pages improved with smart user interaction. tldr++ seperates itself from any other tldr client with convenient user guidance feature.">
+    <meta name="description" content="Binary DistributionDownload the latest binary from Release Page then; decompress the file and copy the executable somewhere in your $PATH for instance : macOS (darwin)12curl -OL https://github.com/isa">
 <meta property="og:type" content="website">
 <meta property="og:title" content="tldr++">
-<meta property="og:url" content="http://isacikgoz.me/tldr/index.html">
+<meta property="og:url" content="http://isacikgoz.me/tldr/installation/index.html">
 <meta property="og:site_name" content="tldr++">
-<meta property="og:description" content="Community driven man pages improved with smart user interaction. tldr++ seperates itself from any other tldr client with convenient user guidance feature.">
+<meta property="og:description" content="Binary DistributionDownload the latest binary from Release Page then; decompress the file and copy the executable somewhere in your $PATH for instance : macOS (darwin)12curl -OL https://github.com/isa">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-27T17:13:47.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tldr++">
-<meta name="twitter:description" content="Community driven man pages improved with smart user interaction. tldr++ seperates itself from any other tldr client with convenient user guidance feature.">
+<meta name="twitter:description" content="Binary DistributionDownload the latest binary from Release Page then; decompress the file and copy the executable somewhere in your $PATH for instance : macOS (darwin)12curl -OL https://github.com/isa">
     
     
         
@@ -79,105 +80,28 @@
 </header>
 
         
-        <section id="about">
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
   
-    <p>Community driven man pages improved with smart user interaction. tldr++ seperates itself from any other tldr client with convenient user guidance feature.</p>
 
-  
-  
-    <p>
-      Find the project on
+  <div class="content" itemprop="articleBody">
       
-      
-      
-        
-          <a class="icon" target="_blank" href="http://github.com/isacikgoz/tldr">
-            <i class="fab fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->.
-        
-      
-    </p>
-  
-</section>
-
-<section id="screenplay">
-  
-    <p><img src="images/screenplay.gif" alt="alt-text"></p>
-
-  
-</section>
-
-<section id="features">
-<span class="h1">Features</span>
-  
-    <ul>
-<li>Fully Interactive (fill the command arguments easily)</li>
-<li>Search from commands to find your desired command (exact + fuzzy search)</li>
-<li>Smart file suggestions (further suggestions will be added)</li>
-<li>Simple implementation</li>
-<li>One of the fastest clients, even fastest (see <a href="https://github.com/isacikgoz/tldr/wiki/Benchmarks">Benchmarks</a>)</li>
-<li>Easy to install. Supports all mainstream OS and platforms (Linux, MacOS, Windows)(arm, x86)</li>
-<li>Pure-go (<em>even contains built-in git</em>)</li>
+          <h2 id="Binary-Distribution"><a href="#Binary-Distribution" class="headerlink" title="Binary Distribution"></a>Binary Distribution</h2><p>Download the latest binary from <a href="https://github.com/isacikgoz/tldr/releases" target="_blank" rel="noopener">Release Page</a> then; decompress the file and copy the executable somewhere in your <code>$PATH</code></p>
+<p><strong>for instance</strong> :</p>
+<h3 id="macOS-darwin"><a href="#macOS-darwin" class="headerlink" title="macOS (darwin)"></a>macOS (darwin)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -OL https://github.com/isacikgoz/tldr/releases/download/v.0.2.1/tldr_0.2.1_darwin_amd64.tar.gz  </span><br><span class="line">tar -xzf tldr_0.2.1_darwin_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -OL https://github.com/isacikgoz/tldr/releases/download/v.0.2.1/tldr_0.2.1_linux_amd64.tar.gz</span><br><span class="line">tar xzf tldr_0.2.1_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="After-that-please-put-executable-to-your-PATH"><a href="#After-that-please-put-executable-to-your-PATH" class="headerlink" title="After that please put executable to your PATH:"></a>After that please put executable to your <code>PATH</code>:</h3><p>*<code>chmod +x tldr</code> if necessary<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv tldr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
+<h2 id="Source-Build"><a href="#Source-Build" class="headerlink" title="Source Build"></a>Source Build</h2><p>Source build requires golang compiler and minimum golang 1.10 is recommended.</p>
+<ul>
+<li>If you don’t have golang installed refer to <a href="https://golang.org/dl/" target="_blank" rel="noopener">golang.org</a>.</li>
+<li>You should have $GOPATH env variable set and your $PATH should include $GOPATH/bin to run app from anywhere.</li>
 </ul>
+<p>To install run the following command;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/isacikgoz/tldr</span><br></pre></td></tr></table></figure></p>
+<p>p.s. I prefer using gopath like this in my zshrc or bashrc;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin</span><br></pre></td></tr></table></figure></p>
+<h2 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h2><p>Run <code>tldr</code> from anywhere you want.</p>
 
-  
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="/tldr/archives">Use Cases</a></span>
-  
-  <ul class="post-list">
-    
-      
-    
-    
-      <li class="post-item">
-        <span>
-    
-        <a class="" href="/tldr/posts/default/">Default usage</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        <span>
-    
-        <a class="" href="/tldr/posts/static/">Static mode</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        <span>
-    
-        <a class="" href="/tldr/posts/sudo/">Add sudo</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        <span>
-    
-        <a class="" href="/tldr/posts/search/">Search Feature</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-</section>
-
-
+        
+  </div>
+</article>
 
         
         <footer id="footer">
