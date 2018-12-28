@@ -641,7 +641,7 @@ body {
 @media screen and (max-width: 480px) {
   #header #title {
     display: table;
-    margin-right: 5rem;
+    margin-right: 1rem;
     min-height: 52px;
   }
   #header #title h1 {
@@ -656,9 +656,9 @@ body {
     border-right: 0;
   }
   #header #nav ul li.icon {
-    position: absolute;
-    top: 77px;
-    right: 1rem;
+    position: relative;
+    top: 0px;
+    right: 0rem;
     display: inline-block;
   }
   #header #nav ul.responsive li {
@@ -666,7 +666,7 @@ body {
   }
   #header #nav li:not(:first-child) {
     padding-top: 1rem;
-    padding-left: 160px;
+    padding-left: 140px/2;
     font-size: 1rem;
   }
 }
