@@ -11,6 +11,7 @@ import (
 	"github.com/c-bata/go-prompt/completer"
 	"github.com/isacikgoz/survey"
 	"github.com/isacikgoz/tldr/pkg/pages"
+	xterm "golang.org/x/crypto/ssh/terminal"
 	"gopkg.in/AlecAivazis/survey.v1/core"
 	"gopkg.in/AlecAivazis/survey.v1/terminal"
 )
@@ -43,12 +44,23 @@ func (p *Prompt) RenderPage(static bool) error {
 		options = append(options, t.Display())
 	}
 	core.ErrorTemplate = ""
+
 	var mxRows int
-	if len(p.Page.Tips) > 7 {
+	_, height, err := xterm.GetSize(0)
+	if err != nil || len(p.Page.Tips) > 10 {
 		mxRows = 7
 	} else {
-		mxRows = len(p.Page.Tips)
+		mxRows = (height - 7) / (3)
+		if mxRows < 3 {
+			mxRows = 3
+		}
 	}
+
+	// if len(p.Page.Tips) > 7 {
+	// 	mxRows = 7
+	// } else {
+	// 	mxRows = len(p.Page.Tips)
+	// }
 	// genereate questions to ask
 	p.Questions = []*survey.Question{
 		{

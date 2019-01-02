@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"gopkg.in/src-d/go-git.v4"
+	git "gopkg.in/src-d/go-git.v4"
 )
 
 const (
@@ -55,7 +55,11 @@ func PullSource() error {
 		Progress:   os.Stdout,
 	})
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
+		if err == git.NoErrAlreadyUpToDate {
+			fmt.Printf("%s\n", "No changes at tldr-pages repository.")
+		} else {
+			fmt.Printf("%s\n", err.Error())
+		}
 	} else {
 		fmt.Printf("Successfully pulled into: %s\n", dir)
 	}
@@ -96,5 +100,6 @@ func staled() (bool, error) {
 	if diff > 24*7*2*time.Hour {
 		return true, nil
 	}
+	file.Close()
 	return false, nil
 }
