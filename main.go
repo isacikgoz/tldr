@@ -39,19 +39,19 @@ func main() {
 		p, err = pages.Read(*page)
 	}
 	if err != nil {
-		fmt.Printf("%s", err.Error())
+		fmt.Printf("%s\n", err.Error())
 		return
 	}
 
 	prompter := prompt.New(p)
 	if err = prompter.RenderPage(*static); err != nil {
-		fmt.Printf("%s", err.Error())
+		fmt.Printf("%s\n", err.Error())
 		return
 	}
 
 	t, err := prompter.Selection()
 	if err != nil {
-		fmt.Printf("%s", err.Error())
+		fmt.Printf("%s\n", err.Error())
 		return
 	}
 
@@ -61,12 +61,12 @@ func main() {
 
 	cmd, err := prompter.GenerateCommand(t)
 	if err != nil {
-		fmt.Printf("%s", err.Error())
+		fmt.Printf("%s\n", err.Error())
 		return
 	}
 
 	if err = prompter.Run(cmd); err != nil {
-		fmt.Printf("%s", err.Error())
+		fmt.Printf("%s\n", err.Error())
 		return
 	}
 }
