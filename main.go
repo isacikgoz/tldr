@@ -51,7 +51,7 @@ func main() {
 
 	t, err := prompter.Selection()
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
+		fmt.Printf("%s", err.Error())
 		return
 	}
 
