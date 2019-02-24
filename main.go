@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/fatih/color"
 	"github.com/isacikgoz/tldr/pkg/config"
 	"github.com/isacikgoz/tldr/pkg/pages"
 	"github.com/isacikgoz/tldr/pkg/prompt"
@@ -10,10 +11,11 @@ import (
 )
 
 var (
-	clear  = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
-	update = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
-	static = kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
-	random = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
+	clear    = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
+	update   = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
+	static   = kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
+	random   = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
+	switchos = kingpin.Flag("switchos", "Switch os to [windows|linux|osx|sunos]").Short('o').String()
 
 	page = kingpin.Arg("command", "Name of the command. (e.g. tldr grep)").Strings()
 )
@@ -23,7 +25,7 @@ func main() {
 	kingpin.Version("tldr++ version 0.5.0")
 	kingpin.Parse()
 
-	config.StartUp(*clear, *update)
+	config.StartUp(*clear, *update, *switchos)
 
 	var p *pages.Page
 	var err error
@@ -65,8 +67,14 @@ func main() {
 		return
 	}
 
-	if err = prompter.Run(cmd); err != nil {
-		fmt.Printf("%s\n", err.Error())
-		return
+	if config.PageOSName() == config.OSName() {
+		if err = prompter.Run(cmd); err != nil {
+			fmt.Printf("%s\n", err.Error())
+			return
+		}
+	} else {
+		cyan := color.New(color.FgCyan)
+		fmt.Printf("Full command: %s\n", cyan.Sprint(cmd))
 	}
+
 }

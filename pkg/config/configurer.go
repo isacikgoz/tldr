@@ -2,14 +2,17 @@ package config
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"runtime"
 
 	"github.com/fatih/color"
 )
 
+var settingFile = os.TempDir() + "tldr"
+
 // StartUp
-func StartUp(clear, update bool) error {
+func StartUp(clear, update bool, osname string) error {
 	ok, _ := exists(SourceDir)
 	// is staled, first check for internet connectivity, we don't want to
 	// existing source if so
@@ -17,6 +20,7 @@ func StartUp(clear, update bool) error {
 		yellow := color.New(color.FgYellow)
 		fmt.Println(yellow.Sprint("TLDR repository is older than 2 weeks, consider updating it with -u option."))
 	}
+
 	if clear || !ok {
 		err := Clear()
 		if err != nil {
@@ -29,8 +33,27 @@ func StartUp(clear, update bool) error {
 
 		}
 		os.Exit(0)
+	} else if osname != "" {
+		switch osname {
+		case "windows", "osx", "linux", "sunos":
+			if err := ioutil.WriteFile(settingFile, []byte(osname), 0644); err != nil {
+				fmt.Printf("Fail save manual os: %v", err)
+			}
+		default:
+			fmt.Printf("%s is invalid osname, choose one from [windows|linux|osx|sunos].", osname)
+		}
+		os.Exit(0)
 	}
 	return nil
+}
+
+func PageOSName() (n string) {
+	if _, err := os.Stat(settingFile); err == nil {
+		if content, err := ioutil.ReadFile(settingFile); err == nil && len(content) > 0 {
+			return string(content)
+		}
+	}
+	return OSName()
 }
 
 // OSName is the running program's operating system

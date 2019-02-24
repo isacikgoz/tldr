@@ -9,11 +9,12 @@ func TestStartUp(t *testing.T) {
 	var tests = []struct {
 		input_1 bool
 		input_2 bool
+		input_3 string
 	}{
-		{false, false},
+		{false, false, ""},
 	}
 	for _, test := range tests {
-		if err := StartUp(test.input_1, test.input_2); err != nil {
+		if err := StartUp(test.input_1, test.input_2, test.input_3); err != nil {
 			t.Errorf("Test Failed: {%t, %t} inputted, recieved: {%s}", test.input_1,
 				test.input_2, err.Error())
 		}
