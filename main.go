@@ -11,11 +11,10 @@ import (
 )
 
 var (
-	clear    = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
-	update   = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
-	static   = kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
-	random   = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
-	switchos = kingpin.Flag("switchos", "Switch os to [windows|linux|osx|sunos]").Short('o').String()
+	clear  = kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
+	update = kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
+	static = kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
+	random = kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
 
 	page = kingpin.Arg("command", "Name of the command. (e.g. tldr grep)").Strings()
 )
@@ -25,7 +24,7 @@ func main() {
 	kingpin.Version("tldr++ version 0.5.0")
 	kingpin.Parse()
 
-	config.StartUp(*clear, *update, *switchos)
+	config.StartUp(*clear, *update)
 
 	var p *pages.Page
 	var err error
