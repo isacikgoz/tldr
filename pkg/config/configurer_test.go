@@ -44,12 +44,3 @@ func TestExists(t *testing.T) {
 		}
 	}
 }
-
-func TestPageOSName(t *testing.T) {
-	if err := os.Setenv("PAGEOS", "linux"); err != nil {
-		t.Error("Test Failed: fail to mock PAGEOS")
-	}
-	if osName := PageOSName(); osName != "linux" {
-		t.Errorf("Test Failed: {%s} expected when PAGEOS is set, received: {%s}", "linux", osName)
-	}
-}
