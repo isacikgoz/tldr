@@ -1,7 +1,6 @@
 package config
 
 import (
-	"os"
 	"runtime"
 	"testing"
 )
