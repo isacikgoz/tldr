@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strings"
 
 	"github.com/fatih/color"
+	env "github.com/kelseyhightower/envconfig"
+	log "github.com/sirupsen/logrus"
 )
+
+type envConf struct {
+	OS string
+}
 
 // StartUp
 func StartUp(clear, update bool) error {
@@ -17,7 +24,6 @@ func StartUp(clear, update bool) error {
 		yellow := color.New(color.FgYellow)
 		fmt.Println(yellow.Sprint("TLDR repository is older than 2 weeks, consider updating it with -u option."))
 	}
-
 	if clear || !ok {
 		err := Clear()
 		if err != nil {
@@ -34,25 +40,20 @@ func StartUp(clear, update bool) error {
 	return nil
 }
 
-func PageOSName() (n string) {
-	pageos := os.Getenv("PAGEOS")
-	switch pageos {
-	case "windows":
-		return pageos
-	case "darwin", "osx":
-		return "osx"
-	case "linux":
-		return pageos
-	case "solaris", "sunos":
-		return "sunos"
-	default:
-		return OSName()
-	}
-}
-
 // OSName is the running program's operating system
 func OSName() (n string) {
-	switch osname := runtime.GOOS; osname {
+	var conf envConf
+	var osname string
+	err := env.Process("tldr", &conf)
+	if err != nil {
+		log.Warn(err.Error())
+	}
+	if len(conf.OS) > 0 {
+		osname = strings.ToLower(conf.OS)
+	} else {
+		osname = runtime.GOOS
+	}
+	switch osname {
 	case "windows":
 		n = osname
 	case "darwin":
