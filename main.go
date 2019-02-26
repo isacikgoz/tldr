@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/fatih/color"
 	"github.com/isacikgoz/tldr/pkg/config"
 	"github.com/isacikgoz/tldr/pkg/pages"
 	"github.com/isacikgoz/tldr/pkg/prompt"
@@ -21,7 +20,7 @@ var (
 
 func main() {
 
-	kingpin.Version("tldr++ version 0.5.0")
+	kingpin.Version("tldr++ version 0.6.0")
 	kingpin.Parse()
 
 	config.StartUp(*clear, *update)
@@ -66,14 +65,8 @@ func main() {
 		return
 	}
 
-	if config.PageOSName() == config.OSName() {
-		if err = prompter.Run(cmd); err != nil {
-			fmt.Printf("%s\n", err.Error())
-			return
-		}
-	} else {
-		cyan := color.New(color.FgCyan)
-		fmt.Printf("Full command: %s\n", cyan.Sprint(cmd))
+	if err = prompter.Run(cmd); err != nil {
+		fmt.Printf("%s\n", err.Error())
+		return
 	}
-
 }
