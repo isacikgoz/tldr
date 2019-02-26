@@ -61,7 +61,7 @@ func queryCommon(page string) (p *Page, err error) {
 
 // Queries from os specific folder
 func queryOS(page string) (p *Page, err error) {
-	d := config.SourceDir + sep + "pages" + sep + config.PageOSName() + sep
+	d := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
 	b, err := ioutil.ReadFile(d + page + ".md")
 	if err != nil {
 		return p, err
@@ -72,7 +72,7 @@ func queryOS(page string) (p *Page, err error) {
 
 func QueryRandom() (p *Page, err error) {
 	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
-	d_os := config.SourceDir + sep + "pages" + sep + config.PageOSName() + sep
+	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
 	paths := []string{d_cmn, d_os}
 	srcs := make([]string, 0)
 	for _, p := range paths {
@@ -93,7 +93,7 @@ func QueryRandom() (p *Page, err error) {
 
 func ReadAll() (p *Page, err error) {
 	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
-	d_os := config.SourceDir + sep + "pages" + sep + config.PageOSName() + sep
+	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
 	paths := []string{d_cmn, d_os}
 	p = &Page{Name: "Search All"}
 	p.Tips = make([]*Tip, 0)
