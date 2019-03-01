@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"runtime"
 	"time"
 
 	git "gopkg.in/src-d/go-git.v4"
@@ -69,10 +70,10 @@ func PullSource() error {
 // returns OS dependent data dir. see XDG Base Directory Specification:
 // https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 func DataDir() (d string) {
-	switch osname := OSName(); osname {
+	switch osname := runtime.GOOS; osname {
 	case "windows":
 		d = os.Getenv("APPDATA")
-	case "osx":
+	case "darwin":
 		d = os.Getenv("HOME") + "/Library/Application Support"
 	case "linux":
 		d = os.Getenv("HOME") + "/.local/share"
