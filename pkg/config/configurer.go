@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strings"
 
 	"github.com/fatih/color"
+	env "github.com/kelseyhightower/envconfig"
+	log "github.com/sirupsen/logrus"
 )
+
+type envConf struct {
+	OS string
+}
 
 // StartUp
 func StartUp(clear, update bool) error {
@@ -35,7 +42,18 @@ func StartUp(clear, update bool) error {
 
 // OSName is the running program's operating system
 func OSName() (n string) {
-	switch osname := runtime.GOOS; osname {
+	var conf envConf
+	var osname string
+	err := env.Process("tldr", &conf)
+	if err != nil {
+		log.Warn(err.Error())
+	}
+	if len(conf.OS) > 0 {
+		osname = strings.ToLower(conf.OS)
+	} else {
+		osname = runtime.GOOS
+	}
+	switch osname {
 	case "windows":
 		n = osname
 	case "darwin":
