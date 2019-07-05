@@ -24,9 +24,8 @@ Or, you can build from source: (min. **go 1.10** compiler is recommended)
 go get -u github.com/isacikgoz/tldr
 ```
 
-### MacOS using brew
+### macOS using brew
 ```bash
-brew tap isacikgoz/taps
 brew install isacikgoz/taps/tldr
 ```
 
