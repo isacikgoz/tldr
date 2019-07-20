@@ -18,10 +18,10 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 
 Refer to [Release Page](https://github.com/isacikgoz/tldr/releases) for binaries.
 
-Or, you can build from source: (min. **go 1.10** compiler is recommended)
+Or, you can build from source: (min. **go 1.12** compiler is recommended)
 
 ```bash
-go get -u github.com/isacikgoz/tldr
+go get github.com/isacikgoz/tldr
 ```
 
 ### macOS using brew
