@@ -10,10 +10,10 @@ import (
 	prompt "github.com/c-bata/go-prompt"
 	"github.com/c-bata/go-prompt/completer"
 	"github.com/isacikgoz/survey"
+	"github.com/isacikgoz/survey/core"
+	"github.com/isacikgoz/survey/terminal"
 	"github.com/isacikgoz/tldr/pkg/pages"
 	xterm "golang.org/x/crypto/ssh/terminal"
-	"gopkg.in/AlecAivazis/survey.v1/core"
-	"gopkg.in/AlecAivazis/survey.v1/terminal"
 )
 
 // Prompt struct is responsible for maintaining the life cycle of a tldr man page
