@@ -24,11 +24,21 @@ Or, you can build from source: (min. **go 1.10** compiler is recommended)
 go get -u github.com/isacikgoz/tldr
 ```
 
-### MacOS using brew
+### macOS using brew
 ```bash
-brew tap isacikgoz/taps
 brew install isacikgoz/taps/tldr
 ```
+
+## Use for different OS
+You can use tldr++ for another OS by setting `TLDR_OS` envrionment to your desired OS such as `linux`, `windows`, `osx` etc.
+
+Let's say you want to set it to Linux run the following command:
+
+```bash
+export TLDR_OS=linux
+```
+
+To make it permenant, you can add the line above to your shell rc file (e.g. `bashrc`, `zshrc` etc.)
 
 ## Credits
 - [tldr-pages](https://github.com/tldr-pages/tldr)

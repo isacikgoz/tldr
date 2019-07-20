@@ -67,7 +67,7 @@ func PullSource() error {
 	return err
 }
 
-// returns OS dependent data dir. see XDG Base Directory Specification:
+// DataDir returns OS dependent data dir. see XDG Base Directory Specification:
 // https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 func DataDir() (d string) {
 	switch osname := runtime.GOOS; osname {
@@ -75,9 +75,7 @@ func DataDir() (d string) {
 		d = os.Getenv("APPDATA")
 	case "darwin":
 		d = os.Getenv("HOME") + "/Library/Application Support"
-	case "linux":
-		d = os.Getenv("HOME") + "/.local/share"
-	case "solaris":
+	case "linux", "android", "solaris":
 		d = os.Getenv("HOME") + "/.local/share"
 	default:
 		fmt.Println("Operating system couldn't be recognized")
