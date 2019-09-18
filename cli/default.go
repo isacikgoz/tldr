@@ -20,7 +20,10 @@ func DefaultPrompt(command string, opts *prompt.Options) (*prompt.Prompt, error)
 		return nil, fmt.Errorf("could not create list: %v", err)
 	}
 
-	p := prompt.Create(command, opts, list)
+	p := prompt.Create(command, opts, list,
+		prompt.WithItemRenderer(renderItem),
+		prompt.WithInformation(information),
+	)
 
 	return p, nil
 }
