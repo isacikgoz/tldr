@@ -8,7 +8,6 @@ import (
 
 	"github.com/fatih/color"
 	env "github.com/kelseyhightower/envconfig"
-	log "github.com/sirupsen/logrus"
 )
 
 type envConf struct {
@@ -46,7 +45,7 @@ func OSName() (n string) {
 	var osname string
 	err := env.Process("tldr", &conf)
 	if err != nil {
-		log.Warn(err.Error())
+		//log.Warn(err.Error())
 	}
 	if len(conf.OS) > 0 {
 		osname = strings.ToLower(conf.OS)

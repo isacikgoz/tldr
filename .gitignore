@@ -14,3 +14,6 @@ coverage.txt
 
 # Binaries
 build/
+
+# IDE specific files
+.vscode

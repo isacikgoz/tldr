@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/isacikgoz/tldr/pkg/config"
+	"github.com/isacikgoz/tldr/config"
 )
 
 var (
