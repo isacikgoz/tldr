@@ -11,7 +11,19 @@ type Page struct {
 	Tips []*Tip
 }
 
-// Parse page from bare markdown string. Rather than parsing markdown itself
+// Tip is the list item of a tldr page
+type Tip struct {
+	Desc string
+	Cmd  *Command
+}
+
+// Command is the representation of a tip's command suggestion
+type Command struct {
+	Command string
+	Args    []string
+}
+
+// ParsePage parses from bare markdown string. Rather than parsing markdown itself
 // initial implementation approach is stripping from a single string
 func ParsePage(s string) *Page {
 	l := strings.Split(s, "\n")
@@ -74,4 +86,43 @@ func (p *Page) Display() string {
 		s = s + p.Desc + "\n"
 	}
 	return s
+}
+
+func (t *Tip) String() string {
+	s := t.Desc
+	return s
+}
+
+func (c *Command) String() string {
+	s := c.Command
+	return s
+}
+
+// Display returns colored and indented text for rendering output
+func (c *Command) Display() string {
+	s := c.Command
+	for _, arg := range c.Args {
+		s = strings.Replace(s, "{{"+arg+"}}", cyan.Sprint(arg), 1)
+	}
+	return "   " + s + "\n"
+}
+
+func stripCommandArgs(in string) []string {
+	out := make([]string, 0)
+	ir := []rune(in)
+	argStart := 0
+	argEnd := 0
+	for ix := 0; ix < len(ir); {
+		if ir[ix] == '{' && ir[ix+1] == '{' {
+			argStart = ix + 2
+			ix = ix + 2
+		} else if ir[ix] == '}' && ir[ix+1] == '}' {
+			argEnd = ix
+			out = append(out, in[:argEnd][argStart:])
+			ix = ix + 2
+		} else {
+			ix++
+		}
+	}
+	return out
 }
