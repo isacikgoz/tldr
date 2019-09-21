@@ -14,10 +14,19 @@ func main() {
 	err := env.Process("gitin", &o)
 	exitIfError(err)
 
-	p, err := cli.DefaultPrompt(os.Args[1], &o)
+	p, err := cli.NewDefaultPrompt(os.Args[1], &o)
 	exitIfError(err)
 
 	exitIfError(p.Run())
+
+	item := p.Selection()
+	if item == nil {
+		return
+	}
+	command := cli.SuggestCommand(item)
+
+	cli.ConfirmCommand(command)
+
 }
 
 func exitIfError(err error) {
