@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -75,36 +76,15 @@ func ParsePage(s string) *Page {
 }
 
 func (p *Page) String() string {
-	s := p.Name + "\n" + p.Desc
-	return s
-}
-
-// Display returns colored and indented text for rendering output
-func (p *Page) Display() string {
-	s := "\n" + bold.Sprint(p.Name) + "\n" + "\n"
-	if len(p.Desc) > 0 {
-		s = s + p.Desc + "\n"
-	}
-	return s
+	return fmt.Sprintf("%s\n%s", p.Name, p.Desc)
 }
 
 func (t *Tip) String() string {
-	s := t.Desc
-	return s
+	return t.Desc
 }
 
 func (c *Command) String() string {
-	s := c.Command
-	return s
-}
-
-// Display returns colored and indented text for rendering output
-func (c *Command) Display() string {
-	s := c.Command
-	for _, arg := range c.Args {
-		s = strings.Replace(s, "{{"+arg+"}}", cyan.Sprint(arg), 1)
-	}
-	return "   " + s + "\n"
+	return c.Command
 }
 
 func stripCommandArgs(in string) []string {

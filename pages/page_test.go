@@ -1,24 +1,28 @@
 package pages
 
 import (
-	// "strings"
 	"testing"
-	// "github.com/isacikgoz/tldr/pkg/config"
 )
 
-func TestRead(t *testing.T) {
-	// var tests = []struct {
-	// 	input    []string
-	// 	expected *Page
-	// }{
-	// 	{[]string{"git", "add"}, &Page{Name: "git add"}},
-	// 	{[]string{"git"}, &Page{Name: "git"}},
-	// }
-	// for _, test := range tests {
-	// 	if p, err := Read(test.input); p != nil && p.Name != test.expected.Name && err != nil {
-	// 		t.Errorf("Test Failed: {%s} inputted, {%s} expected, recieved: {%s}", strings.Join(test.input, ""), test.expected.Name, p.Name)
-	// 	}
-	// }
+func TestParsePage(t *testing.T) {
+	testPage := "# cd \n\n" +
+		"> Change the current working directory.\n\n" +
+		"- Go to the given directory:\n\n" +
+		"`cd {{path/to/directory}}`\n\n" +
+		"- Go to home directory of current user:\n\n" +
+		"`cd`\n\n" +
+		"- Go up to the parent of the current directory:\n\n" +
+		"`cd ..`\n\n" +
+		"- Go to the previously chosen directory:\n\n" +
+		"`cd -`\n"
+
+	page := ParsePage(testPage)
+	if page == nil {
+		t.Fatal("could not generate page")
+	}
+	if len(page.Tips) != 4 {
+		t.Fatal("could not generate tips as expected")
+	}
 }
 
 func TestQueryCommon(t *testing.T) {

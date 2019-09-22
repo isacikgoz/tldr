@@ -8,20 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fatih/color"
 	"github.com/isacikgoz/tldr/config"
 )
 
-var (
+const (
 	sep = string(os.PathSeparator)
-	// a page should have md file extension
 	ext = ".md"
-
-	bold  = color.New(color.Bold)
-	blue  = color.New(color.FgHiBlue)
-	red   = color.New(color.FgRed)
-	cyan  = color.New(color.FgCyan)
-	white = color.New(color.FgWhite)
 )
 
 // Read finds and creates the Page, if it does not find, simply returns abstract
