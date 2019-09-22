@@ -15,8 +15,8 @@ type DefaultPrompt struct {
 }
 
 // NewDefaultPrompt creates a prompt for tldr app
-func NewDefaultPrompt(command string, opts *prompt.Options) (*DefaultPrompt, error) {
-	page, err := pages.Read([]string{command})
+func NewDefaultPrompt(pgs []string, opts *prompt.Options, static bool) (*DefaultPrompt, error) {
+	page, err := pages.Read(pgs)
 	if err != nil {
 		return nil, fmt.Errorf("could not read page: %v", err)
 	}
@@ -33,12 +33,21 @@ func NewDefaultPrompt(command string, opts *prompt.Options) (*DefaultPrompt, err
 		prompt.WithSelectionHandler(d.selection),
 	)
 	p.SetExitMsg(defaultExitMessage(list))
+	if static {
+		if err := printStatic(page.Tips); err != nil {
+			return nil, err
+		}
+		return d, nil
+	}
 	d.prompt = p
 	return d, nil
 }
 
 // Run starts the prompt within
 func (d *DefaultPrompt) Run() error {
+	if d.prompt == nil {
+		return nil
+	}
 	return d.prompt.Run()
 }
 

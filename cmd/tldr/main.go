@@ -7,26 +7,47 @@ import (
 	"github.com/isacikgoz/gitin/prompt"
 	"github.com/isacikgoz/tldr/cli"
 	env "github.com/kelseyhightower/envconfig"
+	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 func main() {
+
+	// clear := kingpin.Flag("clear-cache", "Clear local repository then clone github.com/tldr-pages/tldr").Short('c').Bool()
+	// update := kingpin.Flag("update", "Pulls the latest commits from github.com/tldr-pages/tldr").Short('u').Bool()
+	static := kingpin.Flag("static", "Static mode, application behaves like a conventional tldr client.").Short('s').Default("false").Bool()
+	// random := kingpin.Flag("random", "Random page for testing purposes.").Short('r').Default("false").Bool()
+
+	pages := kingpin.Arg("command", "Name of the command. (e.g. tldr grep)").Strings()
+
+	kingpin.Version("tldr++ version 0.6.1")
+	kingpin.Parse()
+
 	var o prompt.Options
 	err := env.Process("gitin", &o)
 	exitIfError(err)
 
-	p, err := cli.NewDefaultPrompt(os.Args[1], &o)
-	exitIfError(err)
+	exitIfError(run(*pages, &o, *static))
 
-	exitIfError(p.Run())
+}
+
+func run(pages []string, opts *prompt.Options, static bool) error {
+	p, err := cli.NewDefaultPrompt(pages, opts, static)
+	if err != nil {
+		return err
+	}
+
+	err = p.Run()
+	if err != nil {
+		return err
+	}
 
 	item := p.Selection()
 	if item == nil {
-		return
+		return nil
 	}
 	command := cli.SuggestCommand(item)
 
-	cli.ConfirmCommand(command)
-
+	return cli.ConfirmCommand(command)
 }
 
 func exitIfError(err error) {

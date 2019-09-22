@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/fatih/color"
@@ -67,4 +68,20 @@ func renderSingleItem(tip *pages.Tip) [][]term.Cell {
 	tipText = append(tipText, line1)
 	tipText = append(tipText, line2)
 	return tipText
+}
+
+func printStatic(tips []*pages.Tip) error {
+	if err := term.Init(os.Stdin, os.Stdout); err != nil {
+		return err
+	}
+	writer := term.NewBufferedWriter(os.Stdout)
+
+	for _, tip := range tips {
+		cells := renderItem(tip, nil, false)
+		for _, line := range cells {
+			writer.WriteCells(line)
+		}
+	}
+
+	return writer.Flush()
 }
