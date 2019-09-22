@@ -3,13 +3,13 @@ jobs:
   build:
     working_directory: /go/src/github.com/isacikgoz/tldr
     docker:
-      - image: isacikgoz/golang:1.12.5
+      - image: golang:1.13.0
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working dir
       - run:
           name: run tests
           command:
-            go test --tags static ./... -coverprofile=coverage.txt -covermode=atomic
+            go test ./... -coverprofile=coverage.txt -covermode=atomic
       - run:
           name: push on codecov result
           command:
