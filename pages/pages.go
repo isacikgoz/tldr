@@ -8,20 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fatih/color"
-	"github.com/isacikgoz/tldr/pkg/config"
+	"github.com/isacikgoz/tldr/config"
 )
 
-var (
+const (
 	sep = string(os.PathSeparator)
-	// a page should have md file extension
 	ext = ".md"
-
-	bold  = color.New(color.Bold)
-	blue  = color.New(color.FgHiBlue)
-	red   = color.New(color.FgRed)
-	cyan  = color.New(color.FgCyan)
-	white = color.New(color.FgWhite)
 )
 
 // Read finds and creates the Page, if it does not find, simply returns abstract
@@ -70,11 +62,12 @@ func queryOS(page string) (p *Page, err error) {
 	return p, nil
 }
 
+// QueryRandom brings a random page from the source
 func QueryRandom() (p *Page, err error) {
-	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
-	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
-	paths := []string{d_cmn, d_os}
-	srcs := make([]string, 0)
+	dCmn := config.SourceDir + sep + "pages" + sep + "common" + sep
+	dOs := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
+	paths := []string{dCmn, dOs}
+	sources := make([]string, 0)
 	for _, p := range paths {
 		files, err := ioutil.ReadDir(p)
 		if err != nil {
@@ -82,19 +75,20 @@ func QueryRandom() (p *Page, err error) {
 		}
 		for _, f := range files {
 			if strings.HasSuffix(f.Name(), ".md") {
-				srcs = append(srcs, f.Name()[:len(f.Name())-3])
+				sources = append(sources, f.Name()[:len(f.Name())-3])
 			}
 		}
 	}
 	rand.Seed(time.Now().UTC().UnixNano())
-	page := srcs[rand.Intn(len(srcs))]
+	page := sources[rand.Intn(len(sources))]
 	return Read([]string{page})
 }
 
+// ReadAll reads every single page from the source inta single page
 func ReadAll() (p *Page, err error) {
-	d_cmn := config.SourceDir + sep + "pages" + sep + "common" + sep
-	d_os := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
-	paths := []string{d_cmn, d_os}
+	dCmn := config.SourceDir + sep + "pages" + sep + "common" + sep
+	dOs := config.SourceDir + sep + "pages" + sep + config.OSName() + sep
+	paths := []string{dCmn, dOs}
 	p = &Page{Name: "Search All"}
 	p.Tips = make([]*Tip, 0)
 	for _, pt := range paths {

@@ -1,12 +1,14 @@
-package prompt
+package cli
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strings"
 
-	prompt "github.com/c-bata/go-prompt"
+	cp "github.com/c-bata/go-prompt"
 	"github.com/c-bata/go-prompt/completer"
+	"github.com/isacikgoz/tldr/pages"
 )
 
 var (
@@ -14,10 +16,50 @@ var (
 	ext    = ".*"
 )
 
+// SuggestCommand lets user to fill args with suggestions
+func SuggestCommand(item interface{}) string {
+	answers := make([]string, 0)
+	t, ok := item.(*pages.Tip)
+	if !ok {
+		return ""
+	}
+	fmt.Println()
+	for _, arg := range t.Cmd.Args {
+		// cs, _ := suggestCompleterFunc(arg)
+		ext = getFileExtension(arg)
+		answers = append(answers, cp.Input(
+			"$"+" "+arg+" -> ",
+			fileExtCompleterFunc,
+			cp.OptionPreviewSuggestionTextColor(cp.Cyan),
+			cp.OptionInputTextColor(cp.Cyan),
+			cp.OptionAddKeyBind(cp.KeyBind{
+				Key: cp.ControlC,
+				Fn: func(buf *cp.Buffer) {
+					os.Exit(0)
+					return
+				}}),
+			cp.OptionAddKeyBind(cp.KeyBind{
+				Key: cp.Escape,
+				Fn: func(buf *cp.Buffer) {
+
+					return
+				}}),
+			cp.OptionCompletionWordSeparator(completer.FilePathCompletionSeparator),
+		))
+	}
+
+	fs := t.Cmd.String()
+	for i, arg := range t.Cmd.Args {
+		// since we have double curlybraces on args
+		fs = strings.Replace(fs, "{{"+arg+"}}", answers[i], 1)
+	}
+	return fs
+}
+
 // if the arg extension is matched, suggested values moves top of the slice
 // implementation could be beter
-func fileExtCompleterFunc(t prompt.Document) []prompt.Suggest {
-	s := make([]prompt.Suggest, 0)
+func fileExtCompleterFunc(t cp.Document) []cp.Suggest {
+	s := make([]cp.Suggest, 0)
 	if len(ext) > 0 {
 		filePathExtCompleter := completer.FilePathCompleter{
 			IgnoreCase: true,
@@ -35,7 +77,7 @@ func fileExtCompleterFunc(t prompt.Document) []prompt.Suggest {
 }
 
 // default file path completer, return all files
-func filePathCompleterFunc(d prompt.Document) []prompt.Suggest {
+func filePathCompleterFunc(d cp.Document) []cp.Suggest {
 	filePathCompleter := completer.FilePathCompleter{
 		IgnoreCase: true,
 	}
@@ -48,22 +90,20 @@ func suggestCompleterFunc(arg string) (completer.FilePathCompleter, error) {
 			IgnoreCase: true,
 		}
 		return filePathCompleter, nil
-	} else {
-		ext := getFileExtension(arg)
-		// the arg should be longer than regular extension length such as "a.z"
-		if len(arg) > 3 && len(ext) > 0 {
-			filePathCompleter := completer.FilePathCompleter{
-				IgnoreCase: true,
-				Filter: func(fi os.FileInfo) bool {
-					promoted := strings.HasSuffix(fi.Name(), ext)
-					return promoted
-				},
-			}
-			return filePathCompleter, nil
-		} else {
-			return completer.FilePathCompleter{}, errors.New("Can't suggest file")
-		}
 	}
+	ext := getFileExtension(arg)
+	// the arg should be longer than regular extension length such as "a.z"
+	if len(arg) > 3 && len(ext) > 0 {
+		filePathCompleter := completer.FilePathCompleter{
+			IgnoreCase: true,
+			Filter: func(fi os.FileInfo) bool {
+				promoted := strings.HasSuffix(fi.Name(), ext)
+				return promoted
+			},
+		}
+		return filePathCompleter, nil
+	}
+	return completer.FilePathCompleter{}, errors.New("Can't suggest file")
 }
 
 // returns the file extension of the argument
@@ -89,10 +129,10 @@ func getFileExtension(arg string) string {
 }
 
 // removes duplicate entries from prompt.Suggest slice
-func removeDuplicates(elements []prompt.Suggest) []prompt.Suggest {
+func removeDuplicates(elements []cp.Suggest) []cp.Suggest {
 	// Use map to record duplicates as we find them.
-	encountered := map[prompt.Suggest]bool{}
-	result := []prompt.Suggest{}
+	encountered := map[cp.Suggest]bool{}
+	result := []cp.Suggest{}
 
 	for v := range elements {
 		if encountered[elements[v]] == true {
