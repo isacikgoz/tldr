@@ -15,8 +15,16 @@ type DefaultPrompt struct {
 }
 
 // NewDefaultPrompt creates a prompt for tldr app
-func NewDefaultPrompt(pgs []string, opts *prompt.Options, static bool) (*DefaultPrompt, error) {
-	page, err := pages.Read(pgs)
+func NewDefaultPrompt(pgs []string, opts *prompt.Options, static, random bool) (*DefaultPrompt, error) {
+	var page *pages.Page
+	var err error
+	if random {
+		page, err = pages.QueryRandom()
+	} else if len(pgs) == 0 {
+		page, err = pages.ReadAll()
+	} else {
+		page, err = pages.Read(pgs)
+	}
 	if err != nil {
 		return nil, fmt.Errorf("could not read page: %v", err)
 	}
