@@ -19,7 +19,7 @@ func StartUp(clear, update bool) error {
 	ok, _ := exists(SourceDir)
 	// is staled, first check for internet connectivity, we don't want to
 	// existing source if so
-	if st, _ := staled(); st {
+	if st, _ := staled(); st && !update {
 		yellow := color.New(color.FgYellow)
 		fmt.Println(yellow.Sprint("TLDR repository is older than 2 weeks, consider updating it with -u option."))
 	}
