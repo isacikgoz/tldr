@@ -89,6 +89,9 @@ func staled() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	
+	defer file.Close()
+	
 	fstat, err := file.Stat()
 	if err != nil {
 		return false, err
@@ -99,6 +102,5 @@ func staled() (bool, error) {
 	if diff > 24*7*2*time.Hour {
 		return true, nil
 	}
-	file.Close()
 	return false, nil
 }
