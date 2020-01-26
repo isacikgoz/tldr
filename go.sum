@@ -22,6 +22,8 @@ github.com/isacikgoz/gitin v0.2.1 h1:leVnU7abXPJ22opa7jm/5eSt7bqD1g+Rywm6VCov0Rk
 github.com/isacikgoz/gitin v0.2.1/go.mod h1:SnA47yo/GeXoUX4q+XXaq/cLB6mH37ljJKAW3KQMUZ8=
 github.com/isacikgoz/gitin v0.2.3 h1:GIpmSKN6NnOedia3vRhscXsaWD2qg7j5LvVyc/RUFKs=
 github.com/isacikgoz/gitin v0.2.3/go.mod h1:ymYYNDr3/Kj7s8Dhego57+m8kXG69vBUODmq+bLmPeQ=
+github.com/isacikgoz/gitin v0.2.4-0.20200126162802-fc5d886371ff h1:m7G9j1tDkoW0VVYeIHMh+dszwPKta5Ofjt5yOd509k4=
+github.com/isacikgoz/gitin v0.2.4-0.20200126162802-fc5d886371ff/go.mod h1:ymYYNDr3/Kj7s8Dhego57+m8kXG69vBUODmq+bLmPeQ=
 github.com/isacikgoz/libgit2-api v0.1.5/go.mod h1:3nnAFEWfuNxDOO/nduZL+6tjZxk82vVQjNs3d6tV6w4=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=

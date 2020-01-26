@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -40,8 +41,10 @@ func run(pages []string, opts *prompt.Options, static, random bool) error {
 	if err != nil {
 		return err
 	}
-
-	err = p.Run()
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+	err = p.Run(ctx)
 	if err != nil {
 		return err
 	}
