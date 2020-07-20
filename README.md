@@ -32,6 +32,12 @@ go get github.com/isacikgoz/tldr/cmd/tldr
 brew install isacikgoz/taps/tldr
 ```
 
+### Windows using scoop
+
+```powershell
+scoop install tldr
+```
+
 ## Use for different OS
 
 You can use tldr++ for another OS by setting `TLDR_OS` envrionment to your desired OS such as `linux`, `windows`, `osx` etc.
