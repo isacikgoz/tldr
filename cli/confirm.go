@@ -23,7 +23,7 @@ func ConfirmCommand(command string) error {
 		if s.Text() == "Y!" || s.Text() == "y!" {
 			sudo = true
 		}
-		cmds := strings.Split(command, "|")
+		cmds := strings.Split(strings.TrimSpace(command), "|")
 		if len(cmds) >= 2 {
 			return pipeCommands(cmds, sudo)
 		}
