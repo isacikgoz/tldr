@@ -15,14 +15,13 @@ func ConfirmCommand(command string) error {
 	fmt.Print(green.Sprint("? "))
 
 	fmt.Print(command)
-	fmt.Print(" (Y/n) ")
+	fmt.Print(" [Y/n] ")
 	s := bufio.NewScanner(os.Stdin)
 	s.Scan()
-	if s.Text() == "Y" || s.Text() == "y" || s.Text() == "" {
-		sudo := false
-		if s.Text() == "Y!" || s.Text() == "y!" {
-			sudo = true
-		}
+	input := s.Text()
+	sudo := strings.HasSuffix(input, "!")
+	if strings.HasPrefix(input, "Y") || strings.HasPrefix(input, "y") || s.Text() == "" {
+
 		cmds := strings.Split(strings.TrimSpace(command), "|")
 		if len(cmds) >= 2 {
 			return pipeCommands(cmds, sudo)
