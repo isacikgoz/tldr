@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
 	"strings"
 
 	"github.com/fatih/color"
@@ -20,19 +19,16 @@ func ConfirmCommand(command string) error {
 	s := bufio.NewScanner(os.Stdin)
 	s.Scan()
 	if s.Text() == "Y" || s.Text() == "y" || s.Text() == "" {
-		args := strings.Fields(command)
+		sudo := false
 		if s.Text() == "Y!" || s.Text() == "y!" {
-			args = []string{"sudo"}
-			args = append(strings.Fields(command))
+			sudo = true
 		}
-		cmd := exec.Command(args[0], args[1:]...)
-		cmd.Stdin = os.Stdin
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		err := cmd.Run()
-		if err != nil {
-			return err
+		cmds := strings.Split(command, "|")
+		if len(cmds) >= 2 {
+			return pipeCommands(cmds, sudo)
 		}
+		return runCommand(command, sudo)
+
 	}
 	return nil
 }
