@@ -51,7 +51,8 @@ func renderItem(item interface{}, matches []int, selected bool) [][]term.Cell {
 }
 
 func information(item interface{}) [][]term.Cell {
-	return [][]term.Cell{}
+	i := term.Cprint("<ctrl-c> to exit, < / > to search.", color.FgRed)
+	return [][]term.Cell{i}
 }
 
 func printStatic(tips []*pages.Tip) error {

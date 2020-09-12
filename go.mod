@@ -4,12 +4,12 @@ go 1.13
 
 require (
 	github.com/c-bata/go-prompt v0.2.3
-	github.com/fatih/color v1.7.0
-	github.com/isacikgoz/gitin v0.2.3
+	github.com/fatih/color v1.9.0
+	github.com/go-git/go-git/v5 v5.1.0
+	github.com/isacikgoz/gitin v0.2.4-0.20200912114409-236a7ef883ae
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/mattn/go-isatty v0.0.9 // indirect
-	github.com/pkg/term v0.0.0-20190109203006-aa71e9d9e942 // indirect
-	github.com/sahilm/fuzzy v0.1.0
+	github.com/mattn/go-tty v0.0.3 // indirect
+	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gopkg.in/src-d/go-git.v4 v4.13.1
 )

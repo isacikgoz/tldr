@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/isacikgoz/gitin/prompt"
@@ -52,11 +53,11 @@ func NewDefaultPrompt(pgs []string, opts *prompt.Options, static, random bool) (
 }
 
 // Run starts the prompt within
-func (d *DefaultPrompt) Run() error {
+func (d *DefaultPrompt) Run(ctx context.Context) error {
 	if d.prompt == nil {
 		return nil
 	}
-	return d.prompt.Run()
+	return d.prompt.Run(ctx)
 }
 
 // Selection returns the selected item
