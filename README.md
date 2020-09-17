@@ -34,6 +34,8 @@ brew install isacikgoz/taps/tldr
 
 ### Windows using scoop
 
+This is maintained by community and the version is `v0.6.1`. (`v1.0.0` does not have Windows support yet)
+
 ```powershell
 scoop install tldr
 ```
