@@ -13,7 +13,7 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 - Smart file suggestions (further suggestions will be added)
 - Simple implementation
 - One of the fastest clients, even fastest (see [Benchmarks](https://github.com/isacikgoz/tldr/wiki/Benchmarks))
-- Easy to install. Supports all mainstream OS and platforms (Linux, MacOS, Windows)(arm, x86)
+- Easy to install. Supports all mainstream OS and platforms (Linux, MacOS, *Windows (*`v1.0` *excluded for a while*)(arm, x86)
 - Pure-go (*even contains built-in git*)
 
 ## Installation
