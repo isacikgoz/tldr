@@ -76,7 +76,11 @@ func DataDir() (d string) {
 	case "darwin":
 		d = os.Getenv("HOME") + "/Library/Application Support"
 	case "linux", "android", "solaris":
-		d = os.Getenv("HOME") + "/.local/share"
+		if os.Getenv("XDG_DATA_HOME") != "" {
+			d = os.Getenv("XDG_DATA_HOME")
+		} else {
+			d = os.Getenv("HOME") + "/.local/share"
+		}
 	default:
 		fmt.Println("Operating system couldn't be recognized")
 	}
