@@ -1,4 +1,5 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/isacikgoz/tldr.svg)](https://circleci.com/gh/isacikgoz/tldr/tree/master) ![GitHub All Releases](https://img.shields.io/github/downloads/isacikgoz/tldr/total.svg) [![Join the chat at https://gitter.im/tldrpp/community](https://badges.gitter.im/tldrpp/community.svg)](https://gitter.im/tldrpp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) ![Release](https://img.shields.io/github/release/isacikgoz/tldr.svg)
+
+![GitHub Actions](https://img.shields.io/github/actions/workflow/status/isacikgoz/tldr/ci.yml) ![GitHub All Releases](https://img.shields.io/github/downloads/isacikgoz/tldr/total.svg) [![Join the chat at https://gitter.im/tldrpp/community](https://badges.gitter.im/tldrpp/community.svg)](https://gitter.im/tldrpp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) ![Release](https://img.shields.io/github/release/isacikgoz/tldr.svg)
 
 # tldr++
 
@@ -20,7 +21,7 @@ Community driven man pages improved with smart user interaction. **tldr++** sepe
 
 Refer to [Release Page](https://github.com/isacikgoz/tldr/releases) for binaries.
 
-Or, you can build from source: (min. **go 1.13** compiler is recommended)
+Or, you can build from source: (min. **go 1.18** compiler is recommended)
 
 ```bash
 go get github.com/isacikgoz/tldr/cmd/tldr
