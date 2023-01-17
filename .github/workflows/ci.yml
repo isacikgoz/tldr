@@ -1,0 +1,36 @@
+on: [push]
+name: CI
+jobs:
+  test:
+    env:
+      GOPATH: ${{ github.workspace }}
+      GO111MODULE: off
+
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Checkout Code
+      uses: actions/checkout@v2
+      with:
+        path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
+    - name: Execute Tests
+      run: |
+        go get -d -t ./...
+        go test ./... -coverprofile=coverage.txt -covermode=atomic
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ./coverage/reports/
+        fail_ci_if_error: true
+        files: ./coverage1.txt
+        flags: unittests
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true
