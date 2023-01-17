@@ -28,9 +28,8 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        directory: ./coverage/reports/
+        directory: .
         fail_ci_if_error: true
-        files: ./coverage1.txt
+        files: coverage.txt
         flags: unittests
-        path_to_write_report: ./coverage/codecov_report.txt
         verbose: true

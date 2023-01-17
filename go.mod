@@ -6,7 +6,7 @@ require (
 	github.com/c-bata/go-prompt v0.2.6
 	github.com/fatih/color v1.13.0
 	github.com/go-git/go-git/v5 v5.5.2
-	github.com/isacikgoz/gitin v0.2.5
+	github.com/isacikgoz/gitin v0.2.6-0.20210418153550-465ee4a7e407
 	github.com/kelseyhightower/envconfig v1.4.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
@@ -22,6 +22,7 @@ require (
 	github.com/go-git/gcfg v1.5.0 // indirect
 	github.com/go-git/go-billy/v5 v5.4.0 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
+	github.com/isacikgoz/fuzzy v0.2.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -31,7 +32,6 @@ require (
 	github.com/pjbgf/sha1cd v0.2.3 // indirect
 	github.com/pkg/term v1.2.0-beta.2 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
-	github.com/sahilm/fuzzy v0.1.0 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
 	github.com/skeema/knownhosts v1.1.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect

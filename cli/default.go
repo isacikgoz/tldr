@@ -76,7 +76,7 @@ func (d *DefaultPrompt) selection(item interface{}) error {
 	return nil
 }
 
-func defaultExitMessage(l *prompt.List) [][]term.Cell {
+func defaultExitMessage(l *prompt.SyncList) [][]term.Cell {
 	var cells [][]term.Cell
 	cells = append(cells, term.Cprint(""))
 	items, _ := l.Items()
