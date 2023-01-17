@@ -24,7 +24,7 @@ Refer to [Release Page](https://github.com/isacikgoz/tldr/releases) for binaries
 Or, you can build from source: (min. **go 1.18** compiler is recommended)
 
 ```bash
-go get github.com/isacikgoz/tldr/cmd/tldr
+go install github.com/isacikgoz/tldr/cmd/tldr@latest
 ```
 
 ### macOS using brew
