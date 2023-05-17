@@ -3,19 +3,18 @@ module github.com/isacikgoz/tldr
 go 1.18
 
 require (
+	github.com/alecthomas/kingpin/v2 v2.3.2
 	github.com/c-bata/go-prompt v0.2.6
 	github.com/fatih/color v1.13.0
 	github.com/go-git/go-git/v5 v5.5.2
 	github.com/isacikgoz/gitin v0.2.6-0.20210418153550-465ee4a7e407
 	github.com/kelseyhightower/envconfig v1.4.0
-	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
 
 require (
 	github.com/Microsoft/go-winio v0.6.0 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230113180642-068501e20d67 // indirect
 	github.com/acomagu/bufpipe v1.0.3 // indirect
-	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
 	github.com/alecthomas/units v0.0.0-20211218093645-b94a6e3cc137 // indirect
 	github.com/cloudflare/circl v1.3.1 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
@@ -35,6 +34,7 @@ require (
 	github.com/sergi/go-diff v1.3.1 // indirect
 	github.com/skeema/knownhosts v1.1.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
+	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
 	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/net v0.5.0 // indirect
