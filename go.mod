@@ -1,4 +1,4 @@
-module github.com/biehlerj/tldr
+module github.com/isacikgoz/tldr
 
 go 1.18
 
