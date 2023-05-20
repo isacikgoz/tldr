@@ -6,6 +6,7 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/adrg/xdg"
 	git "github.com/go-git/go-git/v5"
 )
 
@@ -76,11 +77,7 @@ func DataDir() (d string) {
 	case "darwin":
 		d = os.Getenv("HOME") + "/Library/Application Support"
 	case "linux", "android", "solaris":
-		if os.Getenv("XDG_DATA_HOME") != "" {
-			d = os.Getenv("XDG_DATA_HOME")
-		} else {
-			d = os.Getenv("HOME") + "/.local/share"
-		}
+		d = xdg.StateHome
 	default:
 		fmt.Println("Operating system couldn't be recognized")
 	}
@@ -93,9 +90,9 @@ func staled() (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	
+
 	defer file.Close()
-	
+
 	fstat, err := file.Stat()
 	if err != nil {
 		return false, err

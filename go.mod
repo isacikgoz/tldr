@@ -3,6 +3,7 @@ module github.com/isacikgoz/tldr
 go 1.18
 
 require (
+	github.com/adrg/xdg v0.4.0
 	github.com/alecthomas/kingpin/v2 v2.3.2
 	github.com/c-bata/go-prompt v0.2.6
 	github.com/fatih/color v1.13.0
