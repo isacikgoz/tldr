@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/isacikgoz/gitin/prompt"
 	"github.com/isacikgoz/tldr/cli"
 	"github.com/isacikgoz/tldr/config"
 	env "github.com/kelseyhightower/envconfig"
-	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 func main() {
