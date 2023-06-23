@@ -3,6 +3,7 @@ module github.com/isacikgoz/tldr
 go 1.18
 
 require (
+	github.com/adrg/xdg v0.4.0
 	github.com/alecthomas/kingpin/v2 v2.3.2
 	github.com/c-bata/go-prompt v0.2.6
 	github.com/fatih/color v1.13.0
@@ -36,6 +37,7 @@ require (
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
 	golang.org/x/crypto v0.5.0 // indirect
+	golang.org/x/exp v0.0.0-20230519143937-03e91628a987
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/net v0.5.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect

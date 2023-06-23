@@ -6,7 +6,9 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/adrg/xdg"
 	git "github.com/go-git/go-git/v5"
+	"golang.org/x/exp/slices"
 )
 
 const (
@@ -18,6 +20,8 @@ var (
 	SourceDir = dir
 	old       = ".old"
 )
+
+var approvedOSes = []string{"windows", "darwin", "linux", "android", "solaris"}
 
 // Clear removes the existing tldr directory. TODO: maybe require user to confirm
 func Clear() error {
@@ -70,18 +74,10 @@ func PullSource() error {
 // DataDir returns OS dependent data dir. see XDG Base Directory Specification:
 // https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 func DataDir() (d string) {
-	switch osname := runtime.GOOS; osname {
-	case "windows":
-		d = os.Getenv("APPDATA")
-	case "darwin":
-		d = os.Getenv("HOME") + "/Library/Application Support"
-	case "linux", "android", "solaris":
-		if os.Getenv("XDG_DATA_HOME") != "" {
-			d = os.Getenv("XDG_DATA_HOME")
-		} else {
-			d = os.Getenv("HOME") + "/.local/share"
-		}
-	default:
+	osname := runtime.GOOS
+	if slices.Contains(approvedOSes, osname) {
+		d = xdg.StateHome
+	} else {
 		fmt.Println("Operating system couldn't be recognized")
 	}
 	return d
@@ -93,9 +89,9 @@ func staled() (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	
+
 	defer file.Close()
-	
+
 	fstat, err := file.Stat()
 	if err != nil {
 		return false, err
